@@ -1,0 +1,60 @@
+@use 'vars';
+
+body { 
+
+    @include vars.flex();
+    @include vars.flex-align();
+    @include vars.flex-justify(); 
+
+    @include vars.bg(var(--color-white));
+  
+    #error-box {
+
+        @include vars.flex(); 
+        @include vars.flex-column();
+
+        gap: 3rem;
+
+        width: 80vw; 
+        max-width: 500px;
+        padding: 3rem;
+        
+        @include vars.bg(var(--color-white));
+        @include vars.brad(.75rem);
+        @include vars.box-shadow(0, 2px, 6px, rgba(0,0,0,.35));
+
+        #error-logo {
+            
+            text-align: center;
+
+            svg { max-height: 80px; }
+
+        }
+
+        #error-body {
+
+            text-align: center;
+             
+            h1 {
+
+                display: block;
+                font-size: 1.8rem;
+                font-weight: vars.$font-bold; 
+                color: var(--color-secondary); 
+
+            }  
+            
+            h2 { 
+
+                display: block;
+                font-size: 1.4rem;
+                font-weight: vars.$font-regular; 
+                color: var(--color-text); 
+
+            } 
+              
+        }
+  
+    }
+
+}

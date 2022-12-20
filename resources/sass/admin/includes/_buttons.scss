@@ -1,0 +1,116 @@
+    @use 'vars';
+
+    a.button, button, .button {
+
+        @include vars.cursor();
+        @include vars.no-border();
+        @include vars.brad(10rem);
+
+        font-size: 1.4rem;
+        font-weight: vars.$font-semibold;
+         
+        @include vars.bg(var(--color-text));
+        
+        color: var(--color-white);
+        padding: 10px 14px;
+        
+        @include vars.flex();
+        @include vars.flex-align();
+        @include vars.flex-justify(center); 
+        
+        gap: .8rem;
+        
+        white-space: nowrap;
+
+        @include vars.transition();
+
+        > * {
+            pointer-events: none;
+        }
+        
+        &:disabled {
+            cursor: not-allowed;
+        }
+
+        &:hover {
+
+            @include vars.underline(none);
+        
+        }
+
+        // Small Button
+        &.button-small {
+            font-size: 1.3rem;
+            padding: 5px 14px;
+        }
+
+        // large Button
+        &.button-large {
+            font-size: 1.5rem;
+            padding: 15px 24px;
+        }
+
+        &.button-icon {
+
+            @include vars.flex();
+            @include vars.flex-align();
+
+            gap: 0.5rem;
+
+            i {  
+                font-size: 1.6rem;  
+            }
+        
+        }
+
+        &.button-inline {
+            display: inline !important;
+        }
+         
+        &.button-primary { color: var(--color-white); @include vars.bg(var(--color-primary)); } 
+        &.button-primary:hover { @include vars.bg(var(--color-primary-light)); box-shadow: 0 2px 5px rgba(0,0,0,.32); } 
+        &.button-primary:disabled { @include vars.bg(var(--color-primary-light)); }
+
+        &.button-secondary { color: var(--color-white); @include vars.bg(var(--color-secondary)); }
+        &.button-secondary:hover { @include vars.bg(var(--color-secondary-dark)); }  
+        &.button-secondary:disabled { @include vars.bg(var(--color-secondary-light)); }
+
+        &.button-prodesp { color: var(--color-white);  @include vars.bg(var(--color-prodesp)); } 
+        &.button-prodesp:hover { @include vars.bg(var(--color-prodesp-dark)); } 
+        &.button-prodesp:disabled { @include vars.bg(var(--color-prodesp-light)); }
+
+        &.button-success { color: var(--color-white);  @include vars.bg(var(--color-success)); } 
+        &.button-success:hover { @include vars.bg(var(--color-success-dark)); } 
+        &.button-success:disabled { @include vars.bg(var(--color-success-light)); }
+
+        &.button-info { color: var(--color-white); @include vars.bg(var(--color-info)); } 
+        &.button-info:hover { @include vars.bg(var(--color-info-dark)); } 
+        &.button-info:disabled { @include vars.bg(var(--color-info-light)); }
+
+        &.button-warning { color: var(--color-white); @include vars.bg(var(--color-warning)); } 
+        &.button-warning:hover { @include vars.bg(var(--color-warning-dark)); } 
+        &.button-warning:disabled { @include vars.bg(var(--color-warning-light)); }
+
+        &.button-danger { color: var(--color-white); @include vars.bg(var(--color-danger)); } 
+        &.button-danger:hover { @include vars.bg(var(--color-danger-dark)); } 
+        &.button-danger:disabled { @include vars.bg(var(--color-danger-light)); }
+
+        &.button-default { color: var(--color-white); @include vars.bg(var(--color-default)); } 
+        &.button-default:hover { @include vars.bg(var(--color-default-dark)); } 
+        &.button-default:disabled { @include vars.bg(var(--color-default-light)); }
+
+        &.button-default-light { color: var(--color-text); @include vars.bg(var(--color-gray)); } 
+        &.button-default-light:hover { @include vars.bg(var(--color-gray-dark)); } 
+        &.button-default-light:disabled {@include vars.bg(var(--color-gray-light)); }
+
+        &.button-whatsapp { color: var(--color-white); @include vars.bg(var(--color-whatsapp)); } 
+        &.button-whatsapp:hover { @include vars.bg(var(--color-whatsapp-dark)); } 
+        &.button-whatsapp:disabled { @include vars.bg(var(--color-whatsapp-light))}
+ 
+        > * {
+
+            pointer-events: none;
+
+        }
+ 
+    }

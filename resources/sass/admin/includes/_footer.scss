@@ -1,0 +1,30 @@
+@use 'vars';
+
+footer {
+
+    @include vars.flex();
+    @include vars.flex-column();
+    @include vars.flex-justify();
+
+    gap: 1rem;
+
+    padding-bottom: 3rem;
+
+    #footer-body {
+
+        font-size: 1.2rem;
+        color: var(--color-gray-dark);
+        text-align: center;
+
+        a {
+            color: var(--color-gray-dark) !important;
+            text-decoration: none;
+
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+
+    }
+
+}

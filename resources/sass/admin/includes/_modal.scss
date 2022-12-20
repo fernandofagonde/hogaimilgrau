@@ -1,0 +1,588 @@
+@use 'vars';
+@use 'icons';
+
+$modal-margin: .5rem;
+$modal-inner-padding: 1rem;
+$modal-title-line-height: 1.6;
+$modal-content-bg: #ffffff;
+$modal-header-padding: 1rem;
+
+$modal-xl: 1200px;
+$modal-lg: 800px;
+$modal-md: 500px;
+$modal-sm: 300px;
+
+.modal-open {
+
+    overflow: hidden;
+
+}
+
+
+.modal {
+
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: 9999;
+    overflow-x: hidden;
+    overflow-y: auto;
+    outline: 0;  
+
+    @include vars.flex();
+    align-items: center;
+    min-height: calc(100% - ($modal-margin * 2));
+
+}
+
+// Modal background
+.modal-backdrop {
+
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+
+    @include vars.bg(#000);  
+    @include vars.transition(all .5s);
+
+    &.fade { opacity: 0; }
+    &.show { opacity: .85;   }
+
+}
+
+// Shell div to position the modal with bottom padding
+.modal-dialog {
+
+    position: relative();
+    width: 90%;
+    max-width: $modal-lg;
+    margin: $modal-margin auto;  
+    pointer-events: none;
+    opacity: 0; 
+    transform: translate(0, -15%);
+    transition: all .5s ease-in-out; 
+
+    &.fade {  
+        opacity: 1;
+    }
+
+    &.show {  
+        transform: translate(0, 0%);
+    }
+
+    &.modal-xl {
+        max-width: $modal-xl;
+    }
+
+    &.modal-lg {
+        max-width: $modal-lg;
+    }
+
+    &.modal-md {
+        max-width: $modal-md;
+    }
+
+    &.modal-sm {
+        max-width: $modal-sm;
+    }
+
+    &.danger {
+        .modal-body {
+            .modal-body-title {
+                color: var(--color-danger);
+            }
+        }
+    }
+
+}
+
+.modal-content {
+
+    position: relative();
+    display: flex;
+    width: 100%;
+    
+    @include vars.bg($modal-content-bg); 
+    @include vars.brad(0);
+    @include vars.no-shadow();
+    @include vars.no-border();
+    
+    line-height: 1.6;
+    
+    flex-direction: column;
+    pointer-events: auto;
+    background-clip: padding-box;
+    outline: 0;
+
+}
+
+.modal-header {
+
+    position: relative();
+    display: flex;
+    padding: 1.2rem 0 1.2rem 2.5rem;
+    
+    @include vars.bb(none); 
+    @include vars.bradt(0);
+    
+    color: var(--color-white);
+    
+    @include vars.bg(var(--color-primary));
+
+    align-items: center; 
+    justify-content: space-between; 
+    
+    .close { 
+
+        margin-right: 2rem;
+        
+        @include vars.cursor();
+
+        color: var(--color-white);
+        opacity:.5;
+        
+        @include vars.transition();
+
+        .icon { 
+            font-size: 1.6rem;
+        }
+
+        &:hover { 
+            opacity:1; 
+        }
+
+    }
+
+}
+
+// Title text within header
+.modal-title {
+
+    @include vars.flex();
+
+    align-items: center;
+
+    margin: 0;
+    font-size: 1.6rem;
+    line-height: $modal-title-line-height;
+
+    img {
+
+        height: 4rem;
+        margin-right: 1rem;
+
+    }
+
+}
+
+.modal-body {
+
+    position: relative(); 
+    flex: 1 1 auto;
+    padding: 1.5rem 2.5rem 2.5rem 2.5rem; 
+    font-size: 1.4rem;
+
+    .modal-body-title { 
+        
+        font-size: 2rem; 
+
+        svg, img { 
+            margin-right: 0.8rem; 
+        }
+
+    }
+
+}
+
+// Footer (for actions)
+.modal-footer {
+
+    display: flex;
+    align-items: center;  
+    justify-content: flex-end;  
+    padding: $modal-inner-padding;
+    
+    @include vars.bt(1px solid #eee);
+
+    > :not(:first-child) { margin-left: .25rem; }
+    > :not(:last-child) { margin-right: .25rem; }
+
+}
+
+// Measure scrollbar width for padding body during modal show/hide
+.modal-scrollbar-measure {
+
+    position: absolute();
+    top: -9999px;
+    width: 50px;
+    height: 50px;
+    overflow: scroll;
+
+} 
+
+#modalPlayer { 
+
+    .modal-content { 
+
+        @include vars.bg(transparent);
+        @include vars.no-border();
+        @include vars.brad(0);
+        @include vars.box-shadow(0, 0, 0, rgba(0,0,0, 0)); 
+        
+        line-height: 1.6; 
+        padding: 0;
+
+    } 
+
+    .modal-header { 
+
+        @include vars.no-border(); 
+        @include vars.bradt(0); 
+        
+        color: var(--color-white); 
+        padding: 15px 40px 15px 0;
+
+        .modal-title {
+
+            .icon { 
+
+                color: var(--color-white); 
+                margin-right: 8px; 
+
+            }
+
+        }
+
+    }
+        
+    .modal-body { 
+        padding: 0; 
+    }
+
+    .modal-footer { 
+        @include vars.no-border(); 
+    }
+
+}
+ 
+#ModalAlert { 
+
+    .modal-content { 
+
+        .modal-header { 
+            @include vars.bg(rgba(0,0,0,.2));
+        }
+
+        .modal-title {
+            font-weight: vars.$font-bold; 
+        }
+
+        h1 {
+
+            font-size: 2.2rem;   
+            font-weight: vars.$font-bold;
+            line-height: 1.4;
+            margin-bottom: 5px;      
+
+        }
+
+        h2 {
+
+            font-size: 1.4rem;
+            font-weight: vars.$font-regular;
+            line-height: 1.6;
+
+        }
+
+        .modal-body {
+
+            @include vars.bg(var(--color-white));
+            color: var(--color-text);
+
+            .modal-msg-error { 
+
+                position: relative();
+                margin-top: 3rem;  
+                
+                &.modal-msg-error { 
+                    margin-top: 1rem; 
+                }
+
+                &:before {
+
+                    font-family: vars.$icon-font-family;
+                    speak: never;
+                    font-style: normal;
+                    font-weight: normal;
+                    font-variant: normal;
+                    text-transform: none;
+                    line-height: 1;
+                    margin-right: 1rem;
+                  
+                    /* Better Font Rendering =========== */
+                    -webkit-font-smoothing: antialiased;
+                    -moz-osx-font-smoothing: grayscale;
+
+                    content: icons.$icon-chevron-right;
+                     
+                    color: var(--color-danger);
+
+                }
+
+                span {
+
+                    font-weight: vars.$font-bold;
+                    color: var(--color-danger);
+
+                }
+
+            }
+
+        }
+
+    }
+
+}
+
+#ModalConfirm {
+
+    .modal-content {   
+        
+        max-width: 450px;
+        
+        @include vars.align();
+        
+        margin: 0 auto;
+
+        @include vars.no-border();
+
+        .modal-icon { 
+
+            font-size: 5rem;
+            margin-bottom: 1rem;
+
+        }
+
+        h1 {
+
+            font-size: 2.2rem;   
+            font-weight: vars.$font-bold;
+            line-height: 1.4;
+            margin-bottom: 5px;      
+
+        }
+
+        h2 {
+
+            font-size: 1.4rem;
+            font-weight: vars.$font-regular;
+            line-height: 1.6;
+
+        }
+
+        .modal-header {  
+
+            @include vars.align(); 
+            @include vars.no-border(); 
+            
+            height: 50px;
+            
+        }
+
+        .modal-body { 
+
+            @include vars.align(); 
+            padding-top: 0;
+
+        }
+
+        .modal-footer { 
+
+            @include vars.flex();
+
+            align-items: stretch;
+            justify-content: center; 
+            gap: 1rem;
+            
+            padding-top: 10px; 
+            padding-bottom: 50px; 
+            
+            @include vars.no-border(); 
+
+            .button {
+
+                @include vars.cursor(); 
+                @include vars.no-border;
+                @include vars.transition(); 
+                @include vars.brad(50rem);
+                @include vars.bg(rgba(0,0,0, 0.05));
+
+                padding: 1rem 2rem;
+         
+                font-size: 1.4rem;
+                font-weight: vars.$font-semibold; 
+                
+                color: var(--color-white);
+                
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+
+                img, .icon { 
+                    
+                    margin-right: .8rem; 
+                    height: 1.5rem; 
+                
+                }
+
+                &:hover {                     
+                    @include vars.bg(rgba(0,0,0, 0.08));                 
+                }
+                
+                &:not(.btn-cancel-modal) { 
+
+                    @include vars.bg(rgba(0,0,0, 0.2));       
+                    
+                    &:hover { 
+                        @include vars.bg(rgba(0,0,0, .3)); 
+                    }
+
+                }
+
+                & + .button { 
+                    margin-left: 1rem !important;
+                }
+
+            }
+
+        }
+
+        &:not([class*="modal-"]) {
+
+            h1 {
+                margin-top: 3rem;
+            }
+
+            .modal-footer {
+
+                padding-bottom: 30px; 
+
+                .button {
+
+                    @include vars.bg(rgba(0,0,0, 0.2));   
+
+                    &:hover { 
+                        @include vars.bg(rgba(0,0,0, 0.3)); 
+                    }
+                
+                    &:not(.btn-cancel-modal) { 
+                        
+                        @include vars.bg(rgba(0,0,0, 0.4));       
+
+                        &:hover { 
+
+                            @include vars.bg(rgba(0,0,0, .5)); 
+
+                        }
+
+                    }
+
+                }
+
+            }
+
+        }
+
+    }
+
+}
+
+#ModalWindow {
+
+    .modal-body {
+
+        @include vars.bg(var(--color-white));
+        
+        padding: 0 0 .5rem 0 !important; 
+        
+        @include vars.bradb(0);
+
+    }
+
+}
+
+#ModalContent {
+
+    .modal-dialog {
+
+        max-width: 1600px !important;
+        
+        .modal-content  {
+            
+            width: 100%;
+            max-width: 1600px;
+
+            .modal-header {
+                
+                @include vars.bg(var(--color-white));                
+                @include vars.bb(1px solid var(--color-gray-light));
+
+                h4 {
+                    color: var(--color-text);
+                    font-weight: vars.$font-bold;
+                }
+                
+                i {
+                    color: var(--color-text);
+                }
+                
+            }
+
+            .modal-body {
+                @include vars.bg(var(--color-white));
+            }
+
+        }
+
+    }
+
+}
+
+#ModalContentHtml {
+
+    .modal-dialog {
+
+        max-width: 1600px !important;
+        
+        .modal-content  {
+            
+            width: 100%;
+            max-width: 1600px;
+
+            .modal-header {
+                
+                @include vars.bg(var(--color-primary));                
+                @include vars.bb(1px solid var(--color-primary-light));
+
+                h4 {
+                    color: var(--color-white);
+                    font-weight: vars.$font-bold;
+                } 
+                
+            }
+
+            .modal-body {
+
+                @include vars.bg(var(--color-white));
+                
+            }
+
+        }
+
+    }
+
+}

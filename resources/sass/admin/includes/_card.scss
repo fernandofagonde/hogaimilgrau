@@ -1,0 +1,51 @@
+
+@use 'vars';
+
+.card {
+
+    width: 100%;
+    padding: 3rem;
+
+    @include vars.bg(var(--color-white));
+    @include vars.box-shadow(0, 3px, 4px, rgba(0,0,0,0.2));
+
+    .card-title {
+
+        position: relative;
+
+        @include vars.flex();
+        @include vars.flex-align();
+
+        gap: .75rem;
+
+        font-size: 1.8rem;
+        font-weight: vars.$font-bold;
+        color: var(--color-primary);
+
+        padding-bottom: .5rem;
+        margin-bottom: 2.5rem;
+
+        i {
+
+            font-size: 2rem;
+            color: var(--color-primary);
+
+        }
+
+        &:after {
+
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 50%;
+            max-width: 40px;
+            height: 0;
+
+            @include vars.bb(2px solid var(--color-primary))
+
+        }
+
+    }
+
+}

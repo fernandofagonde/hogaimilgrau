@@ -1,0 +1,267 @@
+@use 'vars';
+
+/*********************************************************************************************************************************************************
+* BODY
+**********************************************************************************************************************************************************/
+
+html, body {
+
+    font-size: 1.6rem;
+    color: var(--color-text);
+    @include vars.bg(var(--color-white));
+
+}
+
+/*********************************************************************************************************************************************************
+*  BLOCK BODY
+**********************************************************************************************************************************************************/
+
+.lock-body {
+
+    overflow: hidden !important;
+
+    .lock-body-overlay {
+
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+
+        @include vars.bg(rgba(0, 0, 0, 0.75));
+
+        z-index: 2000;
+
+    }
+
+}
+
+/*********************************************************************************************************************************************************
+*  HIDE ELEMENTS
+**********************************************************************************************************************************************************/
+
+.hide {
+
+    display: none;
+
+}
+
+/*********************************************************************************************************************************************************
+*  PRELOADER
+**********************************************************************************************************************************************************/
+
+.preloader {
+
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+
+    z-index: 9999;
+
+    @include vars.bg(var(--bg-preloader));
+
+    @include vars.flex();
+    @include vars.flex-align();
+    @include vars.flex-justify();
+    @include vars.flex-column();
+
+    img {
+        width: auto;
+        max-height: 80px;
+    }
+
+    div {
+        width: 80%;
+        margin: 2rem auto 0 auto;
+
+        font-size: 1.8rem;
+        font-weight: vars.$font-semibold;
+        color: var(--color-preloader);
+        text-align: center;
+    }
+
+}
+
+/*********************************************************************************************************************************************************
+*  IMAGES
+**********************************************************************************************************************************************************/
+
+.img-fluid {
+
+    max-width: 100%;
+    height: auto;
+
+}
+
+/*********************************************************************************************************************************************************
+*  TOOLTIP
+**********************************************************************************************************************************************************/
+
+.tooltip {
+
+    position: relaative;
+
+    &:after {
+
+        content: attr(data-title);
+        @include vars.absolute-h();
+        top: 100%;
+        margin-top: 10px;
+        width: auto;
+        padding: .5rem 1.2rem;
+
+        @include vars.brad(10rem);
+        @include vars.bg(var(--color));
+
+        font-size: 1.1rem;
+        font-weight: vars.$font-semibold;
+        color: var(--color-white);
+
+        white-space: nowrap;
+
+        @include vars.opacity(0);
+
+        @include vars.transition();
+
+        z-index: 300;
+        pointer-events: none;
+
+    }
+
+    &:before {
+
+        content: '';
+
+        @include vars.absolute-h();
+        top: 100%;
+        margin-top: 5px;
+        width: 0;
+        height: 0;
+
+        @include vars.opacity(0);
+        @include vars.transition();
+
+        border-left: 7px solid transparent;
+        border-right: 7px solid transparent;
+        border-bottom: 7px solid var(--color);
+
+        z-index: 300;
+        pointer-events: none;
+
+    }
+
+    &:hover {
+
+        &:after {
+
+            @include vars.opacity(1);
+
+        }
+
+        &::before {
+
+            @include vars.opacity(1);
+
+        }
+
+    }
+
+}
+
+strong {
+
+    font-weight: vars.$font-bold;
+
+}
+
+/*********************************************************************************************************************************************************
+* ALERT BLOCKS
+**********************************************************************************************************************************************************/
+
+.alert {
+
+    display: block;
+    width: 100%;
+    padding: 1.5rem 2rem;
+    margin: 1rem 0 1.5rem 0;
+
+    @include vars.b(1px solid var(--color-text));
+    @include vars.brad(.5rem);
+
+    font-size: 1.4rem;
+    font-weight: vars.$font-regular;
+
+    strong {
+
+        font-weight: vars.$font-bold;
+
+    }
+
+    a {
+
+        color: inherit;
+        font-weight: vars.$font-bold;
+
+        &:hover {
+
+            @include vars.underline();
+
+        }
+
+    }
+
+    > .icon { margin-right: 1rem; }
+
+    &.alert-primary {
+
+        color: var(--color-primary);
+
+        @include vars.bg(var(--bg-light-primary));
+        @include vars.bc(var(--color-primary));
+
+    }
+
+    &.alert-info {
+
+        color: var(--color-info);
+
+        @include vars.bg(var(--bg-light-info));
+        @include vars.bc(var(--color-info));
+
+    }
+
+    &.alert-warning {
+
+        color: var(--color-warning);
+
+        @include vars.bg(var(--bg-light-warning));
+        @include vars.bc(var(--color-warning));
+
+    }
+
+    &.alert-success {
+
+        color: var(--color-success);
+
+        @include vars.bg(var(--bg-light-success));
+        @include vars.bc(var(--color-success));
+
+    }
+
+    &.alert-danger {
+
+        color: var(--color-danger);
+
+        @include vars.bg(var(--bg-light-danger));
+        @include vars.bc(var(--color-danger));
+
+    }
+
+}
+
+// Columns Align
+.align-left { text-align: left; }
+.align-right { text-align: right; }
+.align-center { text-align: center; }

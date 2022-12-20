@@ -1,0 +1,45 @@
+
+@use 'vars';
+
+.color-primary { color: var(--color-primary) !important; }
+.color-secondary { color: var(--color-secondary) !important; }
+.color-success { color: var(--color-success) !important; }
+.color-info { color: var(--color-info) !important; }
+.color-warning { color: var(--color-warning) !important; }
+.color-danger { color: var(--color-danger) !important; }
+.color-default { color: var(--color-default) !important; }
+
+.bg-primary { @include vars.bg(var(--color-primary)); }
+.bg-primary-alt { @include vars.bg(var(--color-primary) !important); color: var(--color-secondary) !important; }
+.bg-secondary { @include vars.bg(var(--color-secondary) !important); }
+.bg-secondary-alt { @include vars.bg(var(--color-secondary) !important); color: var(--color-primary) !important; }
+.bg-success { @include vars.bg(var(--color-success) !important); }
+.bg-info { @include vars.bg(var(--color-info) !important); }
+.bg-warning { @include vars.bg(var(--color-warning) !important); }
+.bg-danger { @include vars.bg(var(--color-danger) !important); }
+.bg-white { @include vars.bg(var(--color-white) !important); }
+.bg-default { @include vars.bg(var(--color-default) !important); }
+
+.modal-primary { @include vars.bg(var(--color-primary) !important); color: var(--color-white); }
+.modal-secondary { @include vars.bg(var(--color-secondary) !important); color: var(--color-white); }
+.modal-success { @include vars.bg(var(--color-success) !important); color: var(--color-white); }
+.modal-info { @include vars.bg(var(--color-info) !important); color: var(--color-white); }
+.modal-warning { @include vars.bg(var(--color-warning) !important); color: var(--color-white); }
+.modal-danger { @include vars.bg(var(--color-danger) !important); color: var(--color-white); }
+.modal-default { @include vars.bg(var(--color-default)!important); color: var(--color-white); }
+
+.color-text-on-primary { color: var(--color-secondary) !important; }
+
+.color-pending { color: var(--color-pending); }
+.color-approved { color: var(--color-approved); }
+.color-rejected { color: var(--color-rejected); }
+.color-cancelled { color: var(--color-cancelled); }
+
+.bg-pending { background-color: var(--color-pending); }
+.bg-approved { background-color: var(--color-approved); }
+.bg-rejected { background-color: var(--color-rejected); }
+.bg-cancelled { background-color: var(--color-cancelled); }
+
+.color-new { color: #0ec27d; }
+.color-pending { color: #f63939; }
+.color-progress { color: #a3a1a1; }

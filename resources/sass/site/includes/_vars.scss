@@ -1,0 +1,233 @@
+
+  /***************************************************************
+  * FONT CONFIG
+  ****************************************************************/
+
+  $font: 'Poppins', Helvetica, Verdana, Arial, sans-serif;
+
+  $icon-font-family: "icon";
+  $icon-font-path: "/assets/fonts/site/";
+
+
+  /***************************************************************
+  * FONT WHEIGHTS
+  ****************************************************************/
+
+  $font-light: 300;
+  $font-regular: 400;
+  $font-medium: 500;
+  $font-semibold: 600;
+  $font-bold: 700;
+  $font-extrabold: 800;
+
+  $form-weight: $font-regular;
+  $gap: 3rem;
+
+  /***************************************************************
+  * OTHER COLORS
+  ****************************************************************/
+
+  :root {
+
+    --color-primary: #06d6a0;
+    --color-primary-light: #18e0ab;
+    --color-primary-dark: #07c08f;
+
+    --color-secondary: #00DFEF;
+    --color-secondary-light: #50eaf5;
+    --color-secondary-dark:  #03bdca;
+
+    --color-text: #3D3D3D;
+    --color-text-med: #535353
+    --color-text-light: #A5A3A3;
+
+    --color-gray: #cccccc;
+    --color-gray-elight: #f1f1f1;
+    --color-gray-light: #ebebeb;
+    --color-gray-mid: #ddd;
+    --color-gray-med: #bcbbbb;
+    --color-gray-dark: #a4a3a3;
+
+    --color-black: #262626;
+    --color-white: #ffffff;
+    --color-green: #0AD47C;
+    --color-blue: #09bff7;
+    --color-purple: #b030fa;
+    --color-pink: #f61fa4;
+
+    --color-whatsapp: #25D366;
+    --color-whatsapp-light: #2def74;
+    --color-whatsapp-dark: #20b757;
+
+    --color-success: #12b14f;
+    --color-success-light: #1ccc5f;
+    --color-success-dark: #119745;
+
+    --color-info: #1acce4;
+    --color-info-light: #2eddf4;
+    --color-info-dark: #12a7ba;
+
+    --color-warning: #ff9100;
+    --color-warning-light: #f99f29;
+    --color-warning-dark: #ec8600;
+
+    --color-danger: #ff1f3d;
+    --color-danger-light: #fc3852;
+    --color-danger-dark: #de1631;
+
+    --color-default: #707070;
+    --color-default-light: #949494;
+    --color-default-dark: #595959;
+
+    --bg-preloader: #3bb658;
+    --color-preloader: #FFFFFF;
+
+    --bg-light-success: #c4ffdb;
+    --bg-light-info: #b1f3fb;
+    --bg-light-warning: #fff0c7;
+    --bg-light-danger: #ffc7cf;
+    --bg-light-white: #ffffff;
+    --bg-light-default: #e9e9e9;
+
+    --color-pending: #949494;
+    --color-approved: #21b437;
+    --color-rejected: #ff5e00;
+    --color-cancelled: #de0e0e;
+
+    --color-new: #06d1e0;
+    --color-active: #21b437;
+    --color-disabled: #de0e0e;
+
+  }
+
+  /***************************************************************
+  * FONTS
+  ****************************************************************/
+
+  @mixin font() { font-family: $font; }
+  @mixin font-alt() { font-family: $font-alt !important; }
+  @mixin font-icon() { font-family: $icon-font-family; speak: never; font-style: normal; font-weight: normal; font-variant: normal; text-transform: none; line-height: 1; display: inline;  -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+
+  /***************************************************************
+  * ALIGN
+  ****************************************************************/
+
+  @mixin align($pos: center) { text-align: $pos; }
+  @mixin align-last($pos: center) { text-align-last: $pos; }
+  @mixin valign($pos: middle) { vertical-align: $pos; }
+  @mixin wrap () { text-wrap: wrap; color-white-space: pre-wrap; color-white-space: -moz-pre-wrap; word-wrap: break-word; }
+
+  /***************************************************************
+  * FONT TRANSFORM / DECORATION
+  ****************************************************************/
+
+  @mixin underline($value: underline) { text-decoration: $value; }
+  @mixin uppercase() { text-transform: uppercase; }
+  @mixin lowercase() { text-transform: lowercase; }
+
+  /***************************************************************
+  * BACKGROUND
+  ****************************************************************/
+
+  @mixin bg($cor) { background-color: $cor ; }
+  @mixin bg-img($img) { background-image: $img; }
+  @mixin bg-pos($pos: center) { background-position: $pos; }
+  @mixin bg-rep($rep: no-repeat) { background-repeat: $rep; }
+  @mixin bg-size($size: cover) { background-size: $size; }
+  @mixin bg-g($color1: $color-primary, $color2: $color-primary-dark) { background: $color1; background: -webkit-linear-gradient(to bottom, $color1, $color2); background: linear-gradient(to bottom, $color1, $color2); }
+
+  /***************************************************************
+  * BORDER
+  ****************************************************************/
+
+  @mixin no-border() { border: none; }
+  @mixin b($a) { border: $a ; }
+  @mixin bc($a) { border-color: $a ; }
+  @mixin bt($a) { border-top:  $a ; }
+  @mixin bb($a) { border-bottom: $a ; }
+  @mixin bl($a) { border-left: $a ; }
+  @mixin br($a) { border-right: $a ; }
+
+  /***************************************************************
+  * BORDER RADIUS
+  ****************************************************************/
+
+  @mixin brad($radius) { -webkit-border-radius: $radius; -webkit-background-clip: padding-box; -moz-border-radius: $radius; -moz-background-clip: padding; border-radius: $radius; background-clip: padding-box; }
+  @mixin bradt($radius) { -webkit-border-top-left-radius: $radius; -webkit-border-top-right-radius: $radius; -webkit-background-clip: padding-box; -moz-border-top-left-radius: $radius; -moz-border-top-right-radius: $radius; -moz-background-clip: padding; border-top-left-radius: $radius; border-top-right-radius: $radius; background-clip: padding-box; }
+  @mixin bradb($radius) { -webkit-border-bottom-left-radius: $radius; -webkit-border-bottom-right-radius: $radius; -webkit-background-clip: padding-box; -moz-border-bottom-left-radius: $radius; -moz-border-bottom-right-radius: $radius; -moz-background-clip: padding; border-bottom-left-radius: $radius; border-bottom-right-radius: $radius; background-clip: padding-box; }
+  @mixin bradl($radius) { -webkit-border-top-left-radius: $radius; -webkit-border-bottom-left-radius: $radius; -webkit-background-clip: padding-box; -moz-border-top-left-radius: $radius; -moz-border-bottom-left-radius: $radius; -moz-background-clip: padding; border-top-left-radius: $radius; border-bottom-left-radius: $radius; background-clip: padding-box; }
+  @mixin bradr($radius) { -webkit-border-top-right-radius: $radius; -webkit-border-bottom-right-radius: $radius; -webkit-background-clip: padding-box; -moz-border-top-right-radius: $radius; -moz-border-bottom-right-radius: $radius; -moz-background-clip: padding; border-top-right-radius: $radius; border-bottom-right-radius: $radius; background-clip: padding-box; }
+
+  /***************************************************************
+  * BOX SHADOW
+  ****************************************************************/
+
+  @mixin box-shadow($a, $b, $c, $color) { -webkit-box-shadow: $a $b $c $color; -moz-box-shadow: $a $b $c $color; box-shadow: $a $b $c $color; }
+  @mixin no-shadow() { -webkit-box-shadow: none; -moz-box-shadow: none; box-shadow: none; }
+
+  /***************************************************************
+  * OPACITY
+  ****************************************************************/
+
+  @mixin opacity($value) { $value_mult: $value * 100; -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=$value_mult)"; filter: alpha(opacity=$value_mult); -moz-opacity: $value; -khtml-opacity: $value; opacity: $value; }
+
+  /***************************************************************
+  * OTHERS
+  ****************************************************************/
+
+  @mixin cursor($cursor: pointer) { cursor: $cursor; }
+
+  /***************************************************************
+  * CENTER CONTENT
+  ***************************************************************/
+
+  @mixin center-content($width: 90%, $max-width: 1400px) { width: $width; max-width: $max-width ; margin-left: auto ; margin-right: auto ; }
+
+  /***************************************************************
+  * GRID
+  ****************************************************************/
+
+  @mixin grid() { display: -ms-grid; display: grid; }
+  @mixin grid-tc($template) { -ms-grid-columns: $template; grid-template-columns: $template; }
+  @mixin grid-tr($template) { -ms-grid-rows: $template; grid-template-rows: $template; }
+  @mixin grid-ta($template) { grid-template-areas: $template; }
+  @mixin grid-c($column) { grid-column: $column; }
+  @mixin grid-r($row) { grid-row: $row; }
+  @mixin grid-ar($row) { grid-auto-rows: $row; }
+  @mixin grid-gap($gap: $gap) { grid-gap: $gap; }
+  @mixin grid-area($area) { grid-area: $area; }
+
+  /***************************************************************
+  * FLEX
+  ****************************************************************/
+
+  @mixin flex() { display: -webkit-box; display: -ms-flexbox; display: flex; }
+  @mixin flex-row() { -webkit-box-orient: horizontal; -webkit-box-direction: normal; -ms-flex-direction: row; flex-direction: row; }
+  @mixin flex-column() { -webkit-box-orient: vertical; -webkit-box-direction: normal; -ms-flex-direction: column; flex-direction: column; }
+  @mixin flex-gap($gap) { gap: $gap; }
+  @mixin flex-align($align: center) { -webkit-box-align: $align; -ms-flex-align: $align; align-items: $align; }
+  @mixin flex-justify($align: center) { -webkit-box-pack: $align; -ms-flex-pack: $align; justify-content: $align; }
+  @mixin flex-reverse() { -webkit-box-orient: horizontal; -webkit-box-direction: reverse; -ms-flex-direction: row-reverse; flex-direction: row-reverse; }
+  @mixin flex-reverse-column() { -webkit-box-orient: vertical; -webkit-box-direction: reverse; -ms-flex-direction: column-reverse; flex-direction: column-reverse; }
+
+  /***************************************************************
+  * POSITIONS
+  ****************************************************************/
+
+  @mixin sticky() { position: sticky; }
+  @mixin fixed() { position: fixed ; }
+  @mixin relative() { position: relative ; }
+  @mixin resetAbsolute() { position: initial; top: 0; left: 0; -webkit-transform:translate(0,0);-moz-transform:translate(0,0);-ms-transform:translate(0,0);-o-transform:translate(0,0);transform:translate(0,0); }
+  @mixin absolute() { position: absolute ; }
+  @mixin absolute-c() { position:absolute ; top:50%;left:50%;-webkit-transform:translate(-50%,-50%);-moz-transform:translate(-50%,-50%);-ms-transform:translate(-50%,-50%);-o-transform:translate(-50%,-50%);transform:translate(-50%,-50%); }
+  @mixin absolute-h() { position:absolute ; left:50%; -webkit-transform: translateX(-50%); -moz-transform: translateX(-50%); -ms-transform:    translateX(-50%); -o-transform: translateX(-50%); transform:translateX(-50%); }
+  @mixin absolute-v() { position:absolute ; top:50%; -webkit-transform: translateY(-50%); -moz-transform: translateY(-50%); -ms-transform:    translateY(-50%); -o-transform: translateY(-50%); transform:translateY(-50%); }
+
+  /***************************************************************
+  * TRANSFORM / TRANSITION
+  ****************************************************************/
+
+  @mixin transX($value) { -webkit-transform: translateX($value); -moz-transform: translateX($value); -ms-transform: translateX($value); -o-transform: translateX($value); transform: translateX($value); }
+  @mixin transY($value) { -webkit-transform: translateY($value); -moz-transform: translateY($value); -ms-transform: translateY($value); -o-transform: translateY($value); transform: translateY($value); }
+  @mixin transition($object: all, $time: .5s, $effect: ease-in-out) { -webkit-transition: $object $time $effect; -moz-transition: $object $time $effect; -o-transition: $object $time $effect; transition: $object $time $effect; }
+

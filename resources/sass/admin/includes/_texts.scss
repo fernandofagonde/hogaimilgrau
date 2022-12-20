@@ -1,0 +1,116 @@
+
+    @use 'vars';
+
+    // Text Effects
+    .strong { 
+        
+        font-weight: vars.$font-bold; 
+    
+    }
+
+    // Links
+    a {
+        
+        color: var(--color-text);
+        
+        @include vars.underline(none);
+
+        &:hover {
+
+            @include vars.underline();
+
+            color: var(--color-text-light);
+
+        }
+
+        &:visited {
+
+            color: var(--color-text);
+
+        }
+
+        &.link-primary {
+
+            color: var(--color-primary);
+
+            &:hover {
+
+                color: var(--color-primary-dark);
+                @include vars.underline();
+
+            }
+
+            &:visited {
+
+                color: var(--color-primary);
+
+            }
+        }
+
+        &.link-secondary {
+
+            color: var(--color-secondary);
+
+            &:hover {
+
+                color: var(--color-secondary-dark);
+                @include vars.underline();
+
+            }
+
+            &:visited {
+                
+                color: var(--color-secondary);
+
+            }
+
+        }
+
+        &.strong {
+
+            font-weight: vars.$font-bold;
+
+            * { 
+                
+                font-weight: vars.$font-bold; 
+            
+            }
+
+        }
+ 
+        &.area-external {
+
+            color: var(--color-primary);
+            
+            @include vars.transition();
+
+            &:hover { 
+
+                color: var(--color-primary-light); 
+                @include vars.underline(none);
+                
+            }
+        
+            &::before {
+
+                font-family: 'icon' !important;
+                speak: never;
+                font-style: normal;
+                font-weight: normal;
+                font-variant: normal;
+                text-transform: none;
+                line-height: 1;
+            
+                /* Better Font Rendering =========== */
+                -webkit-font-smoothing: antialiased;
+                -moz-osx-font-smoothing: grayscale;
+            
+                content: "\e96f"; 
+                color: var(--color-secondary);
+                margin-right: .5rem;
+                
+            }
+
+        } 
+
+    }

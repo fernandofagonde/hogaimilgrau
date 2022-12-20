@@ -1,0 +1,132 @@
+@use 'vars';
+
+/***************************************************************
+* ROOT FONT SIZE
+****************************************************************/
+
+:root { 
+
+   font-size: 60%;
+   transition: font-size .2s;  
+ 
+}
+ 
+/***************************************************************
+* RESPONSIVE ROOT FONT SIZE
+****************************************************************/
+
+@media (min-width: 700px) {
+
+   :root {
+
+      font-size: 62.5%;
+
+   }
+
+}
+
+/***************************************************************
+* BASIC RESET
+****************************************************************/
+
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video { 
+   
+   margin: 0; 
+   padding: 0; 
+   
+   @include vars.b(0); 
+   
+   vertical-align: baseline; 
+}
+
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section { display: block; }
+body { line-height: 1.6; }
+ol, ul { list-style: none; list-style-position: inside; }
+blockquote, q { quotes: none; }
+blockquote:before, blockquote:after, q:before, q:after { content: ''; content: none; }
+table { border-collapse: collapse; border-spacing: 0; }
+a:hover, a:focus, button:hover, button:focus { @include vars.cursor(); } 
+canvas { -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; -o-user-select: none; user-select: none; }
+
+/**************************************************************
+* BASIC HTML 
+**************************************************************/
+
+* { 
+
+   outline: none; 
+   -webkit-font-smoothing: antialiased !important; 
+   -moz-osx-font-smoothing: grayscale !important; 
+   box-sizing: border-box !important;  
+     
+   @include vars.font();
+   font-weight: vars.$font-regular;
+
+   // -webkit-touch-callout: none; 
+   // -webkit-user-select: none; 
+   // -khtml-user-select: none;  
+   // -moz-user-select: none; 
+   // -ms-user-select: none; 
+   // user-select: none;  
+
+}
+
+html, body { 
+
+   width: 100vw; 
+   min-height: 100vh;  
+   caret-color: transparent;
+
+}
+
+html { 
+
+   -ms-overflow-style: none;  /* IE and Edge */
+   scrollbar-width: none;  /* Firefox */
+
+   &::-webkit-scrollbar {
+      display: none;
+   }
+
+}
+
+body {
+
+   position: relative;
+   min-width: 350px; 
+ 
+   overflow-x: hidden; 
+   overflow-y: scroll;    
+
+   &::-webkit-scrollbar {
+      display: none;
+   }
+
+}
+
+::selection {
+   color: var(--color-white);
+   background: var(--color-primary);
+}
+ 
+/* RESET HTML ITENS */
+
+section.main-section { 
+
+   @include vars.bg(#e9e9e9);
+   @include vars.transition();
+
+   position: relative; 
+   left: 260px;
+   width: calc(100% - 260px);
+   min-height: 100vh;  
+
+   .body-wrapper { 
+      
+      padding: 2rem 3rem;
+
+   }
+
+}
+ 

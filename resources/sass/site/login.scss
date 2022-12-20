@@ -1,0 +1,191 @@
+@use 'includes/vars';
+
+@use 'includes/structure';
+
+body {
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+
+    background-image:url(/assets/images/site/background.jpg);
+    background-position: center;
+    background-size: cover;
+}
+
+#login-body {
+
+    @include vars.absolute-c();
+
+    width: 80%;
+    max-width: 400px;
+    margin: 3rem auto;
+    padding: 4rem;
+
+    @include vars.bg(var(--color-white));
+    @include vars.brad(1rem);
+
+    @include vars.flex();
+    @include vars.flex-column();
+
+    gap: 1rem;
+
+    #form-title {
+        text-align: center;
+        margin-bottom: 2rem;
+
+        img {
+            max-width: 200px;
+        }
+    }
+
+    form {
+
+        display: none;
+
+        @include vars.flex-column();
+
+        gap: 1rem;
+
+        @include vars.transition();
+
+        &.active {
+            @include vars.flex();
+        }
+
+        .form-field {
+
+            margin-bottom: 1.5rem;
+
+            label {
+
+                display: block;
+                font-size: 1.4rem;
+                color: var(--color-primary);
+                margin-bottom: .75rem;
+
+            }
+
+        }
+
+        input {
+
+            width: 100%;
+            padding: 1.25rem 1.5rem;
+
+            @include vars.b(1px solid #ccc);
+            @include vars.brad(.5rem);
+
+        }
+
+        #login-button, #remember-button {
+
+            padding: 1rem 2rem;
+            font-weight: vars.$font-bold;
+            color: var(--color-white);
+            background-color: var(--color-primary);
+            border-radius: 10rem;
+            text-align: center;
+            border: none;
+
+        }
+
+        ul {
+            margin-top: 1rem;
+
+            li {
+                a {
+                    font-size: 1.4rem;
+                    text-decoration: none;
+                    color: var(--color-primary);
+
+                    &:hover {
+                        text-decoration: underline;
+                    }
+                }
+
+                & + li {
+                    margin-top: 1rem;
+                }
+            }
+        }
+
+    }
+
+}
+
+
+/*********************************************************************************************************************************************************
+* ALERT BLOCKS
+**********************************************************************************************************************************************************/
+
+.alert {
+
+    display: block;
+    width: 100%;
+    padding: 1.5rem 2rem;
+    margin: 1rem 0 1.5rem 0;
+
+    @include vars.b(1px solid var(--color-text));
+    @include vars.brad(.5rem);
+
+    font-size: 1.4rem;
+    font-weight: vars.$font-regular;
+
+    strong {
+
+        font-weight: vars.$font-bold;
+
+    }
+
+    a {
+
+        color: inherit;
+        font-weight: vars.$font-bold;
+
+        &:hover {
+
+            @include vars.underline();
+
+        }
+
+    }
+
+    > .icon { margin-right: 1rem; }
+
+    &.alert-info {
+
+        color: var(--color-info);
+
+        @include vars.bg(var(--bg-light-info));
+        @include vars.bc(var(--color-info));
+
+    }
+
+    &.alert-warning {
+
+        color: var(--color-warning);
+
+        @include vars.bg(var(--bg-light-warning));
+        @include vars.bc(var(--color-warning));
+
+    }
+
+    &.alert-success {
+
+        color: var(--color-success);
+
+        @include vars.bg(var(--bg-light-success));
+        @include vars.bc(var(--color-success));
+
+    }
+
+    &.alert-danger {
+
+        color: var(--color-danger);
+
+        @include vars.bg(var(--bg-light-danger));
+        @include vars.bc(var(--color-danger));
+
+    }
+
+}
