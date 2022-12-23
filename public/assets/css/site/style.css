@@ -429,7 +429,7 @@ nav{
     display: flex;
 }
 
-.modal__login #login-errors {
+.modal__login #login-errors, .modal__login #recovery-errors {
     border: 1px solid #f82222;
     background-color: #ffcfcf;
     width: 100%;
