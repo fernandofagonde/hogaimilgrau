@@ -386,6 +386,10 @@ nav{
     width: 100%;
 }
 
+.active{
+    display:block;
+}
+
 .modal__login{
     position: fixed;
     top: 0;
@@ -413,11 +417,16 @@ nav{
     margin-top: 40px;
 }
 
-.modal__login .login-body {
+.modal__login .login-body, .modal__login .recovery-body {
+    display: none;
     flex: 1;
     justify-content: center;
-    display: flex;
+
     flex-direction: column;
+}
+
+.modal__login .login-body.active, .modal__login .recovery-body.active {
+    display: flex;
 }
 
 .modal__login #login-errors {
@@ -461,9 +470,6 @@ nav{
     width: 100%;
 }
 
-.active{
-    display:block;
-}
 .max-w-full{
     max-width:100%;
 }

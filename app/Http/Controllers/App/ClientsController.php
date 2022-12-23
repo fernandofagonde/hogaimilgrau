@@ -91,7 +91,7 @@ class UsersController extends Controller
      * @param  mixed $request
      * @return void
      */
-    public function remember(Request $request) {
+    public function recovery(Request $request) {
 
         dd($request);
 

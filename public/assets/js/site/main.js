@@ -277,8 +277,7 @@ const handleCalculoAmplo = () => {
   return;
 };
 
-
-
+// Login Button
 document.querySelector('#login-button').addEventListener('click', (elem) => {
 
     var ERemail = new RegExp(/^[A-Za-z0-9_\-\.]+@[A-Za-z0-9_\-\.]{2,}\.[A-Za-z0-9]{2,}(\.[A-Za-z0-9])?/)
@@ -321,6 +320,29 @@ document.querySelector('#login-button').addEventListener('click', (elem) => {
         document.querySelector('#login-errors').classList.add('active')
 
     }
+
+})
+
+// Recovery Password Button
+document.querySelector('#link-recovery').addEventListener('click', (elem) => {
+
+    var loginBox = document.querySelector('.modal__login .login-body')
+    var recoveryBox = document.querySelector('.modal__login .recovery-body')
+
+    loginBox.classList.remove('active')
+    recoveryBox.classList.add('active')
+
+})
+
+// Login Button
+document.querySelector('#link-login').addEventListener('click', (elem) => {
+
+    var loginBox = document.querySelector('.modal__login .login-body')
+    var recoveryBox = document.querySelector('.modal__login .recovery-body')
+
+    recoveryBox.classList.remove('active')
+    loginBox.classList.add('active')
+
 })
 
 

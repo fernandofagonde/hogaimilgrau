@@ -96,13 +96,13 @@
             </svg>
         </div>
 
-        <div class="login-body">
+        <div class="login-body active">
 
-            <h2>Faça o login ou cadastre-se</h2>
+            <h2>Identifique-se agora</h2>
 
             <div id="login-errors"></div>
 
-            <form name="login-form" class="container__form" action="{{ route('site.signin') }}" method="POST" target="_blank">
+            <form id="login-form" name="login-form" class="container__form" action="{{ route('site.signin') }}" method="POST" target="_blank">
                 @csrf
 
                 <input class="custom__input" type="email" name="email" id="email" placeholder="Seu e-mail">
@@ -111,11 +111,31 @@
 
                 <button type="button" class="cta-btn my-4" id="login-button">Identificar-se!</button>
 
-                <p>Ainda não tem cadastro? <a style="color:rgb(6 214 160);text-decoration:none;" href="#">Cadastre-se aqui!</a></p> @php /*{{ route('site.signup') }}*/ @endphp
+                <p>Não lembra sua senha? <a style="color:rgb(6 214 160);text-decoration:none;" id="link-recovery" href="#">Clique aqui!</a></p> @php /*{{ route('site.signup') }}*/ @endphp
 
             </form>
 
         </div>
+
+        <div class="recovery-body">
+
+            <h2>Recupere sua senha de acesso</h2>
+
+            <div id="recovery-errors"></div>
+
+            <form id="recovery-form" name="recovery-form" class="container__form" action="{{ route('site.recovery') }}" method="POST" target="_blank">
+                @csrf
+
+                <input class="custom__input" type="email" name="email" id="email" placeholder="Seu e-mail">
+
+                <button type="button" class="cta-btn my-4" id="recovery-button">Recuperar Senha</button>
+
+                <p>Já recuperou sua senha? <a style="color:rgb(6 214 160);text-decoration:none;" id="link-login" href="#">Identifique-se!</a></p> @php /*{{ route('site.signup') }}*/ @endphp
+
+            </form>
+
+        </div>
+
     </div>
 
 

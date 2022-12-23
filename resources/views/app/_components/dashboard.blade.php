@@ -18,7 +18,7 @@
                 </div>
             </div>
 
-            <div class="status-grid-col">
+            <div class="status-grid-col col-people">
                 <div class="card">
                     <strong>@php echo Html::icon('icon-users'); @endphp Pessoas</strong>
                     <span>{{ $stats['people'] }}</span>

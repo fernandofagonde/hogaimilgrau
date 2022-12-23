@@ -1,10 +1,7 @@
 
 ## About Project
  
-Project Description.
-
-- [Project Description](link).  
-
+App Hogai
 
 ## Helpers
 
