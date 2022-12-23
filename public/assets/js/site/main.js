@@ -316,8 +316,8 @@ document.querySelector('#login-button').addEventListener('click', (elem) => {
             finalMessage += '- ' + errorsMessage[i] +'<br>'
         }
 
-        document.querySelector('#login-body #login-errors').innerHTML = finalMessage
-        document.querySelector('#login-body #login-errors').classList.add('active')
+        document.querySelector('#login-errors').innerHTML = finalMessage
+        document.querySelector('#login-errors').classList.add('active')
 
     }
 
@@ -375,8 +375,8 @@ document.querySelector('#recovery-button').addEventListener('click', (elem) => {
             finalMessage += '- ' + errorsMessage[i] +'<br>'
         }
 
-        document.querySelector('#recovery-body #login-errors').innerHTML = finalMessage
-        document.querySelector('#recovery-body #login-errors').classList.add('active')
+        document.querySelector('#recovery-errors').innerHTML = finalMessage
+        document.querySelector('#recovery-errors').classList.add('active')
 
     }
 
