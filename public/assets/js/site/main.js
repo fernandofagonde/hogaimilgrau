@@ -282,9 +282,9 @@ document.querySelector('#login-button').addEventListener('click', (elem) => {
 
     var ERemail = new RegExp(/^[A-Za-z0-9_\-\.]+@[A-Za-z0-9_\-\.]{2,}\.[A-Za-z0-9]{2,}(\.[A-Za-z0-9])?/)
 
-    var _form = document.querySelector('.modal__login form')
-    var _email = document.querySelector('.modal__login #email')
-    var _password = document.querySelector('.modal__login #password')
+    var _form = document.querySelector('.modal__login form#login-form')
+    var _email = document.querySelector('.modal__login form#login-form #email')
+    var _password = document.querySelector('.modal__login form#login-form #password')
 
     var errors = false;
     var errorsMessage = []
@@ -316,8 +316,8 @@ document.querySelector('#login-button').addEventListener('click', (elem) => {
             finalMessage += '- ' + errorsMessage[i] +'<br>'
         }
 
-        document.querySelector('#login-errors').innerHTML = finalMessage
-        document.querySelector('#login-errors').classList.add('active')
+        document.querySelector('#login-body #login-errors').innerHTML = finalMessage
+        document.querySelector('#login-body #login-errors').classList.add('active')
 
     }
 
@@ -342,6 +342,43 @@ document.querySelector('#link-login').addEventListener('click', (elem) => {
 
     recoveryBox.classList.remove('active')
     loginBox.classList.add('active')
+
+})
+
+document.querySelector('#recovery-button').addEventListener('click', (elem) => {
+
+    var ERemail = new RegExp(/^[A-Za-z0-9_\-\.]+@[A-Za-z0-9_\-\.]{2,}\.[A-Za-z0-9]{2,}(\.[A-Za-z0-9])?/)
+
+    var _form = document.querySelector('.modal__login form#recovery-form')
+    var _email = document.querySelector('.modal__login form#recovery-form #email')
+
+    var errors = false;
+    var errorsMessage = []
+
+    if(!ERemail.test(_email.value)) {
+
+        errors = true
+        errorsMessage.push('E-mail inválido, verifique-o')
+
+    }
+
+    if(!errors) {
+
+        _form.submit()
+
+    }
+    else {
+
+        var finalMessage = ''
+
+        for(var i = 0; i<errorsMessage.length; i++) {
+            finalMessage += '- ' + errorsMessage[i] +'<br>'
+        }
+
+        document.querySelector('#recovery-body #login-errors').innerHTML = finalMessage
+        document.querySelector('#recovery-body #login-errors').classList.add('active')
+
+    }
 
 })
 
