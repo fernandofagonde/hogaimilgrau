@@ -43,6 +43,23 @@ class Helpers
                 $notifyMessage = 'Sessão encerrada!';
                 break;
 
+            case 'recovery-not-found':
+                $notifyType = 'danger';
+                $notifyMessage = Html::icon('icon-times') . ' E-mail não cadastrado!';
+                break;
+
+            case 'recovery-mail-error':
+                $notifyType = 'danger';
+                $notifyMessage = Html::icon('icon-times') . ' Não foi possível enviar o e-mail, contate o suporte!';
+                break;
+
+            case 'recovery-success':
+                $notifyType = 'success';
+                $notifyMessage = Html::icon('icon-check') . ' Senha enviada com sucesso!';
+                break;
+
+
+
         }
 
         echo Html::alert($notifyType, $notifyMessage);

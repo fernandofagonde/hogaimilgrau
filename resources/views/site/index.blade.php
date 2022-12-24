@@ -119,7 +119,7 @@
 
         <div class="recovery-body">
 
-            <h2>Recupere sua senha de acesso</h2>
+            <h2>Recupere sua senha</h2>
 
             <div id="recovery-errors"></div>
 
@@ -128,7 +128,7 @@
 
                 <input class="custom__input" type="email" name="email" id="email" placeholder="Seu e-mail">
 
-                <button type="button" class="cta-btn my-4" id="recovery-button">Recuperar Senha</button>
+                <button type="button" class="cta-btn my-4" id="recovery-button">Enviar Senha</button>
 
                 <p>Já recuperou sua senha? <a style="color:rgb(6 214 160);text-decoration:none;" id="link-login" href="#">Identifique-se!</a></p> @php /*{{ route('site.signup') }}*/ @endphp
 

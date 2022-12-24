@@ -421,8 +421,11 @@ nav{
     display: none;
     flex: 1;
     justify-content: center;
-
     flex-direction: column;
+}
+
+#login-form, #recovery-form {
+    text-align: center;
 }
 
 .modal__login .login-body.active, .modal__login .recovery-body.active {
@@ -444,7 +447,7 @@ nav{
     transition: all .3s ease-in-out;
 }
 
-.modal__login #login-errors.active {
+.modal__login #login-errors.active, .modal__login #recovery-errors.active {
     opacity: 1;
     max-height: none;
     overflow: visible;

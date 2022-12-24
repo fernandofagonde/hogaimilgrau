@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Helpers;
 use App\Http\Middleware\CountVisitMiddleware;
 use App\Http\Controllers\NotifyController;
+use App\Http\Controllers\SendEmailController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,7 +32,6 @@ Route::post('/signin', [\App\Http\Controllers\App\LoginController::class, 'auten
 Route::post('/recovery', [\App\Http\Controllers\App\ClientsController::class, 'recovery'])->name('site.recovery');
 Route::get('/signup', [\App\Http\Controllers\App\ClientsController::class, 'index'])->name('site.signup');
 Route::post('/signup', [\App\Http\Controllers\App\CLientsController::class, 'create'])->name('site.signup');
-
 
 //withoutMiddleware
 Route::get('/login', [\App\Http\Controllers\Admin\LoginController::class, 'index'])->name('site.login');

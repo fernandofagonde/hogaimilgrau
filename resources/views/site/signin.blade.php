@@ -43,12 +43,11 @@
 
                     <ul>
                         <li><a id="remember-link">Esqueci minha senha</a></li>
-                        <li><a href="#">Quero me cadastrar</a></li>
                     </ul>
 
                 </form>
 
-                <form id="remember-form" action="{{ route('site.remember') }}" method="POST">
+                <form id="remember-form" action="{{ route('site.recovery') }}" method="POST">
 
                     @csrf
 
@@ -64,7 +63,6 @@
 
                     <ul>
                         <li><a id="login-link">Quem me identificar</a></li>
-                        <li><a href="#">Quero me cadastrar</a></li>
                     </ul>
 
                 </form>

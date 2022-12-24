@@ -75,6 +75,8 @@ body {
             @include vars.b(1px solid #ccc);
             @include vars.brad(.5rem);
 
+            caret-color: var(--color-primary);
+
         }
 
         #login-button, #remember-button {
