@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>@yield('title'){{ env('ADM_NAME') }}</title>
+    <title>@yield('title'){{ config('app.name_admin') }}</title>
     <link rel="stylesheet" href="/assets/css/admin/main.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

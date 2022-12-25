@@ -42,21 +42,22 @@
         padding: 1rem 2rem;
         border-top-left-radius: 1rem;
         border-top-right-radius: 1rem;
-        margin-bottom: 3rem;
     }
 
     #message-body {
         line-height: 1.8;
         padding: 2rem 3rem;
+        font-size: 16px;
     }
 
     #message-footer {
-        padding: 2rem 3rem;
-        margin-top: 2rem;
+        padding: 1rem 3rem;
+        margin-top: 0;
         border-top: 1px solid #eee;
 
         text-align: center;
         color: #333;
+        font-size: 16px;
     }
 
 </style>
@@ -64,11 +65,11 @@
 <body>
     <div id="message-wrapper">
 
-        <div id="message-logo"><img src="/#" title="{{ env('APP_NAME') }}" alt="{{ env('APP_NAME') }}">
+        <div id="message-logo"><img src="/#" title="{{ config('app.name') }}" alt="{{ config('app.name') }}">
         <div id="message-box">
             <h1 id="message-header">{{ $mailData['title'] }}</h1>
             <div id="message-body">@php echo $mailData['body']; @endphp</div>
-            <div id="message-footer">{{ env('APP_NAME') }}<br>{{ env('APP_URL') }}</div>
+            <div id="message-footer">{{ config('app.name') }}<br>{{ config('app.url') }}</div>
         </div>
 
     </div>

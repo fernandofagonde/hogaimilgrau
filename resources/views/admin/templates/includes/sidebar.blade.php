@@ -2,8 +2,8 @@
 
     <div class="logo">
 
-        <div><a href="/admin" title="{{ env('APP_NAME') }}"><img src="/assets/img/logo-icon.png"></a></div>
-        <span>{{ env('ADM_NAME') }}</span>
+        <div><a href="/admin" title="{{ config('app.name_admin') }}"><img src="/assets/img/logo-icon.png"></a></div>
+        <span>{{ config('app.name_admin') }}</span>
 
     </div>
 

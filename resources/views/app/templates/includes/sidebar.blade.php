@@ -2,8 +2,8 @@
 
     <div class="logo">
 
-        <div><a href="/app" title="{{ env('CLIENT_APP_NAME') }}"><img src="/assets/images/app/icon.png"></a></div>
-        <span>{{ env('CLIENT_APP_NAME') }}</span>
+        <div><a href="/app" title="{{ config('app.name_client') }}"><img src="/assets/images/app/icon.png"></a></div>
+        <span>{{ config('app.name_client') }}</span>
 
     </div>
 
