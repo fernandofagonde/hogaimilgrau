@@ -462,6 +462,13 @@ class Helpers
                 'url' => ''
             ],
 
+            // Profile
+            [
+                'icon' => 'icon-user',
+                'label' => 'Minha Conta',
+                'url' => 'profile'
+            ],
+
             // People
             [
                 'icon' => 'icon-users',

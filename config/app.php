@@ -15,7 +15,7 @@ return [
 
     'name' => env('APP_NAME', 'Hogai'),
     'name_admin' => env('ADM_NAME', 'ADM Hogai'),
-    'name_client' => env('CLIENT_NAME', 'App Hogai')
+    'name_client' => env('CLIENT_NAME', 'App Hogai'),
 
     /*
     |--------------------------------------------------------------------------
@@ -55,12 +55,10 @@ return [
     */
 
     'url' => env('APP_URL', 'http://localhost'),
+    'admin_url' => env('ADM_URL', 'http://localhost/admin'),
+    'client_url' => env('CLIENT_URL', 'http://localhost/app'),
 
     'asset_url' => env('ASSET_URL', null),
-
-    'admin_url' => env('ADM_URL', 'http://localhost/admin'),
-
-    'client_url' => env('CLIENT_URL', 'http://localhost/app'),
 
 
 

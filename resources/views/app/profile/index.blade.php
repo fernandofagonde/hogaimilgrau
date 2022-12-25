@@ -8,7 +8,7 @@
 
 @extends('app.templates.basic')
 
-@section('title', 'Profile')
+@section('title', 'Minha Conta')
 
 @section('body')
 

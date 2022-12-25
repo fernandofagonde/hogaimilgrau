@@ -75,7 +75,7 @@ class ClientsController extends Controller
                 'title' => 'Recuperação de Senha de Acesso',
                 'body' => '<strong id="client-name">Olá '. $_n[0] .'</strong><br>Você solicitou a recuperação de sua senha de acesso, porém, por questões de segurança, nós geramos uma nova senha aleatória que
                 indicamos que seja alterada para outra de sua preferência em seu primeiro login. Sua nova senha está abaixo:<br>
-                <div id="password-box">'. $password .'</div><br>Lembre-se de alterá-la em seu primeira acesso, no menu Profile.<br><br>
+                <div id="password-box">'. $password .'</div><br>Lembre-se de alterá-la em seu primeira acesso, no menu "Minha Conta".<br><br>
                 Atenciosamente,<br>
                 <strong>'. config('app.client_name') .'</strong>'
             ];
