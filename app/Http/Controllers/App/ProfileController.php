@@ -111,6 +111,7 @@ class ProfileController extends Controller
             $profile->phone_whatsapp = $request->input('phone_whatsapp');
             $profile->city = $request->input('city');
             $profile->uf = $request->input('uf');
+            $profile->updated_at = date('Y-m-d H:i:s');
 
             if(strlen($request->input('new_password')) >= 6 &&  strlen($request->input('new_password')) <= 12 && $request->input('new_password') === $request->input('retype_new_password')) {
 

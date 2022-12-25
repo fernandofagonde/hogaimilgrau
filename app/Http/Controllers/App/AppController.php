@@ -13,10 +13,12 @@ class AppController extends Controller
 
     public function index(Request $request) {
 
+        $clientId = LoginController::getId();
+
         // People
         $people = DB::table('people')
         ->select(['id'])
-        ->where('client_id', LoginController::getId())
+        ->where('client_id', $clientId)
         ->get()->all();
 
         // Payable
@@ -25,7 +27,7 @@ class AppController extends Controller
             'payable_bills.*',
             (DB::raw("COALESCE((SELECT p.name FROM people p WHERE p.id = payable_bills.people_id), '-') AS people_name"))
         ])
-        ->where('payable_bills.client_id', LoginController::getId())
+        ->where('payable_bills.client_id', $clientId)
         ->whereDate('payable_bills.payday', '>=', date('Y-m-d'))
         ->orderBy('payable_bills.payday')
         ->get()->all();
@@ -35,7 +37,7 @@ class AppController extends Controller
         ->select([
             (DB::raw("SUM(amount) AS total"))
         ])
-        ->where('client_id', LoginController::getId())
+        ->where('client_id', $clientId)
         ->whereDate('payday', '>=', date('Y-m-d'))
         ->get()->all();
 
@@ -45,7 +47,7 @@ class AppController extends Controller
             'receivable_bills.*',
             (DB::raw("COALESCE((SELECT p.name FROM people p WHERE p.id = receivable_bills.people_id), '-') AS people_name"))
         ])
-        ->where('receivable_bills.client_id', LoginController::getId())
+        ->where('receivable_bills.client_id', $clientId)
         ->whereDate('receivable_bills.payday', '>=', date('Y-m-d'))
         ->orderBy('receivable_bills.payday')
         ->get()->all();
@@ -55,15 +57,15 @@ class AppController extends Controller
         ->select([
             (DB::raw("SUM(amount) AS total"))
         ])
-        ->where('client_id', LoginController::getId())
+        ->where('client_id', $clientId)
         ->whereDate('payday', '>=', date('Y-m-d'))
         ->get()->all();
 
         // Total Provided
         $totalProvided = DB::select("SELECT
             (
-                COALESCE((SELECT SUM(amount) FROM receivable_bills WHERE status <> 'CANCELED'), 0) -
-                COALESCE((SELECT SUM(amount) FROM payable_bills WHERE status <> 'CANCELED'), 0)
+                COALESCE((SELECT SUM(amount) FROM receivable_bills WHERE client_id = '". $clientId ."' AND status <> 'CANCELED'), 0) -
+                COALESCE((SELECT SUM(amount) FROM payable_bills WHERE client_id = '". $clientId ."' AND status <> 'CANCELED'), 0)
             ) AS total
         ");
 

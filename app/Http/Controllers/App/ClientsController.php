@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 use App\Http\Controllers\SendEmailController;
 
@@ -49,22 +50,38 @@ class ClientsController extends Controller
         // Execute Validation
         Validator::make($request->all(), $rules, $feedback)->validate();
 
-        $user = DB::table('clients')->select(['id', 'name', 'email'])->where('email', $request->input('email'))->get()->first();
+        // Get Client
+        $client = Client::select(['id', 'name', 'email'])->where('email', $request->input('email'))->get()->first();
 
-        if(isset($user->id)) {
+        if(isset($client->id)) {
 
+            // Start Faker Lib
             $faker = \Faker\Factory::create();
 
+            // Get First Name
+            $_n = explode(' ', $client->name);
+
+            // New Random Password
+            $password = $faker->regexify('[A-Za-z0-9]{8}');
+
+            // Update Data on DB
+            $client->password = Hash::make($password);
+            $client->updated_at = date('Y-m-d H:i:s');
+            $client->save();
+
+            // Prepare Message
             $mailData = [
                 'subject' => 'Hogai - Recuperação de Senha',
                 'title' => 'Recuperação de Senha de Acesso',
-                'body' => 'Você solicitou a recuperação de sua senha de acesso, porém por questões de segurança nós geramos uma nova senha, disponível abaixo:<br>
-                <div id="password-box">'. $faker->randomNumber(6, true) .'<br>Lembre-se de alterá-la em seu primeira acesso.<br><br>
+                'body' => '<strong id="client-name">Olá '. $_n[0] .'</strong><br>Você solicitou a recuperação de sua senha de acesso, porém, por questões de segurança, nós geramos uma nova senha aleatória que
+                indicamos que seja alterada para outra de sua preferência em seu primeiro login. Sua nova senha está abaixo:<br>
+                <div id="password-box">'. $password .'</div><br>Lembre-se de alterá-la em seu primeira acesso, no menu Profile.<br><br>
                 Atenciosamente,<br>
-                '. env('APP_NAME')
+                <strong>'. config('app.client_name') .'</strong>'
             ];
 
-            Mail::to(['address' => $user->email])->send(new NotifyMail($mailData));
+            // Send E-mail
+            Mail::to(['address' => $client->email])->send(new NotifyMail($mailData));
 
             if (Mail::failures()) {
 
