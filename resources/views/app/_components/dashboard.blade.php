@@ -30,21 +30,21 @@
         <div class="stats-grid">
 
             <div class="status-grid-col">
-                <div class="card">
+                <div class="card card-payable">
                     <strong>@php echo Html::icon('icon-minus-square'); @endphp Total à Pagar</strong>
                     <span class="color-danger">@php echo ($stats['payableProvided'] > 0) ? Main::money($stats['payableProvided']) : 'R$ 0,00'; @endphp</span>
                 </div>
             </div>
 
             <div class="status-grid-col">
-                <div class="card">
+                <div class="card card-receivable">
                     <strong>@php echo Html::icon('icon-plus-square'); @endphp Total à Receber</strong>
                     <span>@php echo ($stats['receivableProvided'] > 0) ? Main::money($stats['receivableProvided']) : 'R$ 0,00'; @endphp</span>
                 </div>
             </div>
 
             <div class="status-grid-col">
-                <div class="card">
+                <div class="card card-provided">
                     <strong>@php echo Html::icon('icon-filter'); @endphp Saldo Previsto</strong>
                     <span class="@php echo ($stats['totalProvided'] > 0) ? 'color-info' : (($stats['totalProvided'] < 0) ? 'color-danger' : ''); @endphp">@php
                         echo ($stats['totalProvided'] > 0) ? Main::money($stats['totalProvided']) : (($stats['totalProvided'] == 0) ? 'R$ 0,00' : '-'. Main::money(abs($stats['totalProvided'])));

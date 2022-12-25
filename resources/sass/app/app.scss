@@ -76,6 +76,30 @@
 
         }
 
+
+        &.card-payable {
+
+            * { color: var(--color-text) !important; }
+
+            background-color: var(--color-primary);
+
+        }
+
+        &.card-receivable {
+
+            * { color: var(--color-text) !important; }
+
+            background-color: var(--color-secondary);
+
+        }
+
+        &.card-provided {
+
+            * { color: var(--color-text) !important; }
+
+            background-color: var(--color-alternative);
+
+        }
     }
 
     .stats-grid {
@@ -117,10 +141,6 @@
 
         }
 
-    }
-
-    .col-people {
-        background: var(--color-alternative);
     }
 
     #dashboard-charts {
