@@ -81,7 +81,7 @@
 
             * { color: var(--color-text) !important; }
 
-            background-color: var(--color-primary);
+            background-color: var(--color-alternative);
 
         }
 
@@ -97,9 +97,10 @@
 
             * { color: var(--color-text) !important; }
 
-            background-color: var(--color-alternative);
+            background-color: var(--color-primary);
 
         }
+
     }
 
     .stats-grid {

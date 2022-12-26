@@ -8,9 +8,11 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
+use Intervention\Image\ImageManager;
 
 use App\Http\Controllers\App\LoginController;
 use App\Http\Controllers\App\ClientsLogController;
+use App\Models\ClientsImage as Image;
 
 use App\Models\Profile;
 use App\Models\Client;
@@ -68,7 +70,7 @@ class ProfileController extends Controller
     public function index()
     {
         $profile = DB::table('clients')
-            ->select(['id', 'name', 'document_type', 'document', 'city', 'uf', 'phone', 'phone_whatsapp', 'email'])
+            ->select(['id', 'name', 'document_type', 'document', 'city', 'uf', 'phone', 'phone_whatsapp', 'image', 'email'])
             ->where('id', LoginController::getId())
             ->get()->first();
 
@@ -119,6 +121,71 @@ class ProfileController extends Controller
 
             }
 
+            if($request->hasFile('image')) {
+
+                $profileId = $profile->id;
+
+                $file = $request->file('image');
+
+                $path = public_path("content/app/profile");
+
+                $fileExtension = $file->getClientOriginalExtension();
+
+                if(in_array($fileExtension, ['jpg', 'jpeg', 'png', 'gif', 'webp'])) {
+
+                    // Delete Billet
+                    if($profile->image != '' && !is_null($profile->image)) {
+
+                        @unlink($path .'/'. $profile->image);
+
+                    }
+
+                    $fileName = 'profile-'. $profileId .'-'. Str::uuid() .'.webp';
+
+                    $file->move(public_path('content/temp'), $file->getClientOriginalName());
+                    $tempfile = public_path('content/temp') .'/'. $file->getClientOriginalName();
+
+                    $profile->image = $fileName;
+                    $profile->save();
+
+                    // Initiate Manager
+                    $manager = new ImageManager('gd');
+
+                    // Make Large File
+                    $largeFile = $manager->make($tempfile);
+                    $largeFileDims = [ 400, 300 ];
+
+                    // Make Thumb File
+                    $thumbFile = $largeFile;
+                    $thumbFileDims = [ 120, 90 ];
+
+                    // Original Width and Height
+                    $originalWidth = $largeFile->getWidth();
+                    $originalHeight = $largeFile->getheight();
+
+                    // Reverse Dims if Portrait
+                    if($originalWidth < $originalHeight) {
+
+                        array_reverse($largeFileDims);
+
+                    }
+
+                    // Save Large
+                    $largeFile->scale($largeFileDims[0], $largeFileDims[1]);
+                    $largeFile->toWebp(100)->save($path . '/large/'. $fileName);
+
+                    // Save Thumb
+                    $thumbFile->scale($thumbFileDims[0], $thumbFileDims[1]);
+                    $thumbFile->toWebp(100)->save($path . '/thumb/'. $fileName);
+
+                    unset($largeFile, $thumbFile);
+
+                    unlink($tempfile);
+
+                }
+
+            }
+
             $profile->save();
 
             // Send Notify
@@ -148,4 +215,55 @@ class ProfileController extends Controller
     {
         //
     }
+
+
+    /**
+     * attachment_delete
+     *
+     * @param  mixed $request
+     * @param  mixed $profile
+     * @return void
+     */
+    public function deleteAttachment(Request $request, $client) {
+
+        $profile = Client::select(['id', 'name', 'document_type', 'document', 'city', 'uf', 'phone', 'phone_whatsapp', 'image', 'email'])
+            ->where('id', LoginController::getId())
+            ->get()->first();
+
+        if(isset($profile->id)) {
+
+            // Delete Billet
+            if($request->input('field') == 'image') {
+
+                if($profile->image != '' && !is_null($profile->image)) {
+
+                    @unlink(public_path("content/app/profile") .'/thumb/'. $profile->image);
+                    @unlink(public_path("content/app/profile") .'/large/'. $profile->image);
+
+                }
+
+                $profile->image = '';
+
+            }
+
+            // Save
+            $profile->save();
+
+            // Send Notify
+            session()->flash('notifyType', 'success-del-attachment');
+
+            return redirect()->route($this->routePath . 'index', [ 'profile' => $profile ]);
+
+        }
+        else {
+
+            // Send Notify
+            session()->flash('notifyType', 'not-permited');
+
+            return redirect()->route($this->routePath . 'index');
+
+        }
+
+    }
+
 }

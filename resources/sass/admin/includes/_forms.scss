@@ -1783,6 +1783,7 @@
                 padding: 1rem;
                 border: 1px solid #eee;
                 border-radius: 5px;
+                text-align: center;
 
             }
 
@@ -1844,9 +1845,20 @@
 
             button {
 
-                margin-top: 5px;
-                border-radius: 5px;
+                margin-top: .5rem;
+                border-radius: .5rem;
 
+            }
+
+            .image-list-buttons {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                gap: 1rem;
+
+                button {
+                    flex: 1;
+                }
             }
 
         }
@@ -1861,6 +1873,18 @@
 
         @media (max-width: 767px) {
             grid-template-columns: repeat(2, 1fr);
+
+            .image-list-item {
+
+                .image-list-buttons {
+                    flex-direction: column;
+
+                    button {
+                        flex: 1;
+                    }
+                }
+
+            }
         }
 
     }

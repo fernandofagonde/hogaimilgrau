@@ -123,7 +123,7 @@ class LoginController extends Controller
 
 
     /**
-     * getClientName
+     * getName
      *
      * @return void
      */
@@ -134,12 +134,46 @@ class LoginController extends Controller
     }
 
 
+    /**
+     * getImage
+     *
+     * @return void
+     */
+    public static function getImage() {
+
+        $profile = Client::select(['id', 'image'])->where('id', self::getId())->get()->first();
+ 
+        if(isset($profile->id)) {
+
+            return ($profile->image != '' && !is_null($profile->image)) ? $profile->image : '';
+
+        }
+        else {
+
+            return '';
+
+        }
+
+    }
+
+
+    /**
+     * cookieKey
+     *
+     * @return void
+     */
     public static function cookieKey() {
 
         return 'AuthKeyClientCK';
 
     }
 
+
+    /**
+     * cookieToken
+     *
+     * @return void
+     */
     public static function cookieToken() {
 
         return 'AuthTokenClientCK';
@@ -147,6 +181,11 @@ class LoginController extends Controller
     }
 
 
+    /**
+     * apiHeaders
+     *
+     * @return void
+     */
     public static function apiHeaders() {
 
         return [

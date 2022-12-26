@@ -8,10 +8,11 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>@yield('title') | {{ config('app.name_client') }}</title>
     <link rel="stylesheet" href="/assets/css/admin/main.css">
-    <link rel="stylesheet" href="/assets/css/app/app.css">
+    <link rel="stylesheet" href="/assets/css/app/app.css"> 
+    <link rel="stylesheet" href="/assets/js/app/lib/glightbox/css/glightbox.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="/assets/css/admin/quill.snow.css" rel="stylesheet">
+    <link href="/assets/css/admin/quill.snow.css" rel="stylesheet">   
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;500;600;700;800&display=swap" rel="stylesheet">
     @yield('styles')
 </head>
@@ -47,7 +48,7 @@
     </section>
 
     <script src="/assets/js/app/charts.min.js"></script>
-    <script src="/assets/js/app/glightbox.js"></script>
+    <script src="/assets/js/app/lib/glightbox/glightbox.js"></script>
     <script src="/assets/js/app/lib/toastify.min.js"></script>
     <script src="/assets/js/app/lib/highlight/highlight.min.js"></script>
     <script src="/assets/js/app/quill.min.js"></script>

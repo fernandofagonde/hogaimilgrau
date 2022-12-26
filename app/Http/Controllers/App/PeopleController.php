@@ -183,9 +183,17 @@ class PeopleController extends Controller
      */
     public function destroy($person)
     {
-        $people = People::where('client_id', LoginController::getId())->where('id', $person)->get()->first();
+        $people = People::select(['id', 'image'])->where('client_id', LoginController::getId())->where('id', $person)->get()->first();
 
         if(isset($people->id)) {
+
+            // Delete Image
+            if($people->image != '' && !is_null($people->image)) {
+
+                @unlink(public_path("content/app/profile/thumb") .'/'. $people->image);
+                @unlink(public_path("content/app/profile/large") .'/'. $people->image);
+
+            }
 
             $people->delete();
 
@@ -255,5 +263,6 @@ class PeopleController extends Controller
         }
 
     }
+
 
 }

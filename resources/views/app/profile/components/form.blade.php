@@ -15,11 +15,13 @@
     $uf = (isset($profile->id)) ? $profile->uf : old('uf');
     $email = (isset($profile->id)) ? $profile->email : old('email');
 
+    $image_file = ($profile->image != '') ? [ $profile->image ] : [];
+
     // Form Route
     $route_verb = 'update';
 
     // Open Form
-    echo Html::formOpen(route($route . '.' . $route_verb), 'edit');
+    echo Html::formOpen(route($route . '.' . $route_verb), 'edit', true);
 
     @endphp
 
@@ -302,6 +304,51 @@
     </div>
 
     @php
+
+        /*
+        * Form Divider
+        */
+
+        echo Html::divider();
+
+        /*
+        * Billet Uploader
+        */
+
+        echo Html::uploadField([
+            'label' => 'Imagem de Perfil',
+            'name' => 'image',
+            'route' => $route,
+            'limit-files' => 1,
+            'limit-size' => 5,
+            'placeholder' => 'Selecione o arquivo para envio.<br>Formatos aceitos JPG, GIF, PNG ou WEBP'
+        ]);
+
+        /*
+        * List Files
+        */
+
+        if(sizeof($image_file) > 0 && $image_file[0] != '' && $image_file[0] != 'NULL') {
+
+            $extension = Main::extension($image_file[0]);
+
+            echo '<div class="image-list">
+                <div class="image-list-item">
+                    <div class="image-list-item-box glightbox" data-selector="a.glightbox-item">
+                        <div class="embed-responsive embed-responsive-4by3" style="--bg-image: url('. url('content/app/profile') .'/thumb/'. $profile->image .');">
+                            <a class="glightbox-item" data-href="'. url('content/app/profile') .'/large/'. $profile->image .'"></a>
+                        </div>
+                        <div class="image-list-buttons">
+                            <button type="button" class="button button-danger button-icon button-delete-attachment" data-module="'. $module .'" data-field="image" data-id="'. $profile->id .'">'. Html::icon('icon-trash') .' APAGAR</button>
+                        </div>
+                    </div>
+                </div>
+            </div>';
+
+            unset($extension);
+
+        }
+
         /*
         * Divider
         */
@@ -460,4 +507,10 @@
         @endphp
     </div>
 
+</form>
+
+<form id="delete-form" action="" method="post">
+    @method('DELETE')
+    @csrf
+    <input type="hidden" name="field" id="field" value="">
 </form>

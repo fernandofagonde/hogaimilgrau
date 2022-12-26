@@ -718,7 +718,7 @@
     }
 
     // Delete Attachment Confirm
-    __on('.list-files', 'click', '.button-delete-attachment', (elem) => {
+    __on('body', 'click', '.button-delete-attachment', (elem) => {
 
         var button = elem.target
         var module = button.dataset.module

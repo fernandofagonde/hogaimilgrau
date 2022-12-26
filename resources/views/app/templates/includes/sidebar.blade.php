@@ -1,3 +1,9 @@
+@php
+
+    $image = $loginController::getImage();
+
+@endphp
+
 <aside>
 
     <div class="logo">
@@ -13,7 +19,15 @@
 
         <div class="profile-content">
 
-            <a class="link-profile" href="{{ route('app.profile.index') }}" target="_blank">@php echo Html::icon('icon-users') @endphp</a>
+            <a class="link-profile @php if($image != '') { echo 'profile-image'; } @endphp" href="{{ route('app.profile.index') }}" target="_blank"@php
+
+                if($image != '') {
+
+                    echo ' style="--bg-image: url('. url("content/app/profile") .'/thumb/'. $image .');"';
+
+                }
+
+            @endphp>@php if($image == '') { echo Html::icon('icon-users'); } @endphp</a>
 
             <div>
                 {{ $loginController::getName() }}

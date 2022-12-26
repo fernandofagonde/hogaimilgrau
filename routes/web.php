@@ -26,16 +26,17 @@ use App\Http\Controllers\SendEmailController;
 
 Route::get('/', [\App\Http\Controllers\Site\HomeController::class, 'index'])->name('site.home');
 
-//withoutMiddleware
+/*
+|--------------------------------------------------------------------------
+| App Login Routes
+|--------------------------------------------------------------------------
+|
+*/
 Route::get('/signin', [\App\Http\Controllers\App\LoginController::class, 'index'])->name('site.signin');
 Route::post('/signin', [\App\Http\Controllers\App\LoginController::class, 'autenticate'])->name('site.signin');
 Route::post('/recovery', [\App\Http\Controllers\App\ClientsController::class, 'recovery'])->name('site.recovery');
-Route::get('/signup', [\App\Http\Controllers\App\ClientsController::class, 'index'])->name('site.signup');
-Route::post('/signup', [\App\Http\Controllers\App\CLientsController::class, 'create'])->name('site.signup');
-
-//withoutMiddleware
-Route::get('/login', [\App\Http\Controllers\Admin\LoginController::class, 'index'])->name('site.login');
-Route::post('/login', [\App\Http\Controllers\Admin\LoginController::class, 'autenticate'])->name('site.login');
+//Route::get('/signup', [\App\Http\Controllers\App\ClientsController::class, 'index'])->name('site.signup');
+//Route::post('/signup', [\App\Http\Controllers\App\CLientsController::class, 'create'])->name('site.signup');
 
 /*
 |--------------------------------------------------------------------------
@@ -69,6 +70,7 @@ Route::prefix('app')->middleware('app.auth')->group(function() {
         // Profile
         Route::get('profile', [\App\Http\Controllers\App\ProfileController::class, 'index'])->name('profile.index');
         Route::put('profile/update', [\App\Http\Controllers\App\ProfileController::class, 'update'])->name('profile.update');
+        Route::delete('profile/attachment/{profile}', [\App\Http\Controllers\App\ProfileController::class, 'deleteAttachment'])->name('profile.attachment_delete');
 
     });
 
@@ -79,5 +81,42 @@ Route::prefix('app')->middleware('app.auth')->group(function() {
     Route::get('/', [\App\Http\Controllers\App\AppController::class, 'index'])->name('app.index');
 
     //Route::post('/uploads', 'UploadController@upload')->name('upload');
+
+});
+
+/*
+|--------------------------------------------------------------------------
+| Admin Login Routes
+|--------------------------------------------------------------------------
+|
+*/
+Route::get('/login', [\App\Http\Controllers\Admin\LoginController::class, 'index'])->name('site.login');
+Route::post('/login', [\App\Http\Controllers\Admin\LoginController::class, 'autenticate'])->name('site.login');
+
+/*
+|--------------------------------------------------------------------------
+| Admin Routes
+|--------------------------------------------------------------------------
+|
+*/
+Route::prefix('admin')->middleware('admin.auth')->group(function() {
+
+    Route::name('admin.')->group(function() {
+
+        // Clients
+        Route::delete('clients/attachment/{client}', [\App\Http\Controllers\App\ReceivableBillsController::class, 'deleteAttachment'])->name('clients.attachment_delete');
+        Route::put('clients/status', [\App\Http\Controllers\App\ReceivableBillsController::class, 'status'])->name('clients.status');
+        Route::post('clients/search', [\App\Http\Controllers\App\ReceivableBillsController::class, 'search'])->name('clients.search');
+        Route::get('clients/search', [\App\Http\Controllers\App\ReceivableBillsController::class, 'search'])->name('clients.search');
+        Route::resource('clients', \App\Http\Controllers\App\ReceivableBillsController::class);
+
+    });
+
+    // Logout
+    Route::get('/logout', [\App\Http\Controllers\Admin\LoginController::class, 'logout'])->name('admin.logout');
+
+    // Dashboard
+    Route::get('/', [\App\Http\Controllers\Admin\AdminController::class, 'index'])->name('admin.index');
+
 
 });

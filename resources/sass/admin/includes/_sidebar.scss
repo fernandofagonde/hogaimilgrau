@@ -316,6 +316,18 @@
                     display: inline-flex;
                     width: 45px;
 
+                    &.profile-image {
+
+                        height: 32px;
+
+                        @include vars.brad(1rem);
+                        @include vars.bg-img(var(--bg-image));
+                        @include vars.bg-size();
+                        @include vars.bg-rep();
+                        @include vars.bg-pos();
+
+                    }
+
                     i {
 
                         width: 45px;

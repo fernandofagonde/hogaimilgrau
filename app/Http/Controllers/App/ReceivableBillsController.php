@@ -471,4 +471,63 @@ class ReceivableBillsController extends Controller
         return '<input type="'. ($request->filled('payday') ? 'date' : 'tel') .'" id="payday" name="payday" class="form-control align-center other-field" autocomplete="off" onfocus="(paydayFocus(this))" onblur="(paydayBlur(this))" placeholder="Data de Vencimento" value="'. ($request->filled('payday') ? $request->input('payday') : '') .'">';
 
     }
+
+    /**
+     * attachment_delete
+     *
+     * @param  mixed $request
+     * @param  mixed $receivable_bill
+     * @return void
+     */
+    public function deleteAttachment(Request $request, $receivable_bill) {
+
+        $bill = Bill::where('client_id', LoginController::getId())->where('id', $receivable_bill)->get()->first();
+
+        if(isset($bill->id)) {
+
+            // Delete Billet
+            if($request->input('field') == 'billet') {
+
+                if($bill->billet != '' && !is_null($bill->billet)) {
+
+                    @unlink(public_path("content/app/receivable_billets") .'/'. $bill->billet);
+
+                }
+
+                $bill->billet = '';
+
+            }
+
+            // Delete Receipt
+            else if($request->input('field') == 'receipt') {
+
+                if($bill->receipt != '' && !is_null($bill->receipt)) {
+
+                    @unlink(public_path("content/app/receivable_receipts") .'/'. $bill->receipt);
+
+                }
+
+                $bill->receipt = '';
+
+            }
+
+            // Save
+            $bill->save();
+
+            // Send Notify
+            session()->flash('notifyType', 'success-del-attachment');
+
+            return redirect()->route($this->routePath . 'edit', [ 'receivable_bill' => $bill ]);
+
+        }
+        else {
+
+            // Send Notify
+            session()->flash('notifyType', 'not-permited');
+
+            return redirect()->route($this->routePath . 'index');
+
+        }
+
+    }
 }

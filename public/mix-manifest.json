@@ -4,7 +4,7 @@
     "/assets/js/admin/charts.min.js": "/assets/js/admin/charts.min.js?id=8c59902b89c22d7d2551f29238fce478",
     "/assets/js/app/glightbox.min.js": "/assets/js/app/glightbox.min.js?id=ddec8c50a6b5f8227a5fae0cec7db233",
     "/assets/js/app/charts.min.js": "/assets/js/app/charts.min.js?id=8c59902b89c22d7d2551f29238fce478",
-    "/assets/css/admin/main.css": "/assets/css/admin/main.css?id=d15bb7e12ba1dd16613f690834ee1fc4",
+    "/assets/css/admin/main.css": "/assets/css/admin/main.css?id=6f0d7b3f7e06e85dae6734252ee09499",
     "/assets/css/admin/quill.snow.css": "/assets/css/admin/quill.snow.css?id=d9c0503c6c41c631897486172649a548",
     "/assets/js/admin/quill.min.js": "/assets/js/admin/quill.min.js?id=2b281608fbf131f1da91467b210fd54e",
     "/assets/js/admin/quill.resize.min.js": "/assets/js/admin/quill.resize.min.js?id=eb07dd3e148de596388899b08d3e7ce7",
@@ -447,6 +447,8 @@
     "/assets/js/admin/lib/toastify.min.js": "/assets/js/admin/lib/toastify.min.js?id=8a2b13698adfddd1d8348b5a686199bb",
     "/assets/js/app/quill.min.js": "/assets/js/app/quill.min.js?id=2b281608fbf131f1da91467b210fd54e",
     "/assets/js/app/quill.resize.min.js": "/assets/js/app/quill.resize.min.js?id=eb07dd3e148de596388899b08d3e7ce7",
+    "/assets/js/app/lib/glightbox/css/glightbox.css": "/assets/js/app/lib/glightbox/css/glightbox.css?id=bd18280169d71cacd2e29c38730d604e",
+    "/assets/js/app/lib/glightbox/css/glightbox.min.css": "/assets/js/app/lib/glightbox/css/glightbox.min.css?id=d5e0b3e55dd94af81580abcfb4585fb1",
     "/assets/js/app/lib/highlight/highlight.min.js": "/assets/js/app/lib/highlight/highlight.min.js?id=2ecc64d30c1bb7afccc6c888d9a7be7a",
     "/assets/js/app/lib/highlight/languages/1c.min.js": "/assets/js/app/lib/highlight/languages/1c.min.js?id=2e57ef780aa8b9011e615774c94fcd48",
     "/assets/js/app/lib/highlight/languages/abnf.min.js": "/assets/js/app/lib/highlight/languages/abnf.min.js?id=3c74a3a7e75f43d46ad1686297b91dbb",
@@ -884,7 +886,7 @@
     "/assets/js/app/lib/highlight/styles/xcode.min.css": "/assets/js/app/lib/highlight/styles/xcode.min.css?id=0cfa3193ace8274fb1d29f963aeaa3b5",
     "/assets/js/app/lib/highlight/styles/xt256.min.css": "/assets/js/app/lib/highlight/styles/xt256.min.css?id=54e20019f5460497da2033f2f16771ee",
     "/assets/js/app/lib/toastify.min.js": "/assets/js/app/lib/toastify.min.js?id=8a2b13698adfddd1d8348b5a686199bb",
-    "/assets/js/app/modules/payable_bills.js": "/assets/js/app/modules/payable_bills.js?id=7b75951ca1e3139ff06a7152130a93df",
+    "/assets/js/app/modules/payable_bills.js": "/assets/js/app/modules/payable_bills.js?id=4a429622f854e31fb3fabbccdce923e3",
     "/assets/js/app/modules/people.js": "/assets/js/app/modules/people.js?id=5441b9d14d5ce64922c793932d882a1d",
-    "/assets/js/app/modules/receivable_bills.js": "/assets/js/app/modules/receivable_bills.js?id=3f5e4e3057fee196ec542d5c0dc707c8"
+    "/assets/js/app/modules/receivable_bills.js": "/assets/js/app/modules/receivable_bills.js?id=cc52dc855b5a9f3320db93c1dd5bc797"
 }
