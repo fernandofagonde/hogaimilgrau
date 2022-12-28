@@ -1,13 +1,14 @@
 @inject('loginController', 'App\Http\Controllers\Admin\LoginController')
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>@yield('title'){{ config('app.name_admin') }}</title>
+    <title>@yield('title') | {{ config('app.name_admin') }}</title>
     <link rel="stylesheet" href="/assets/css/admin/main.css">
+    <link rel="stylesheet" href="/assets/js/app/lib/glightbox/css/glightbox.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="/assets/css/admin/quill.snow.css" rel="stylesheet">
@@ -15,6 +16,11 @@
     @yield('styles')
 </head>
 <body>
+
+    <div class="preloader">
+        <img src="/assets/images/admin/loader.svg">
+        <div>Aguarde, carregando...</div>
+    </div>
 
     @include('admin.templates.includes.header')
 
@@ -40,15 +46,15 @@
 
     </section>
 
-    <script src="/assets/js/admin/main.min.js"></script>
     <script src="/assets/js/admin/charts.min.js"></script>
-    <script src="/assets/js/admin/color.min.js"></script>
-    <script src="/assets/js/admin/glightbox.min.js"></script>
+    <script src="/assets/js/admin/lib/glightbox/glightbox.js"></script>
     <script src="/assets/js/admin/lib/toastify.min.js"></script>
     <script src="/assets/js/admin/lib/highlight/highlight.min.js"></script>
     <script src="/assets/js/admin/quill.min.js"></script>
     <script src="/assets/js/admin/quill.resize.min.js"></script>
     <script src="https://unpkg.com/quill-paste-smart@latest/dist/quill-paste-smart.js"></script>
+
+    <script src="/assets/js/admin/main.min.js"></script>
 
     @yield('js')
 

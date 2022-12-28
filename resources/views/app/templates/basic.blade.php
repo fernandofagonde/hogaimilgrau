@@ -1,18 +1,18 @@
 @inject('loginController', 'App\Http\Controllers\App\LoginController')
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>@yield('title') | {{ config('app.name_client') }}</title>
     <link rel="stylesheet" href="/assets/css/admin/main.css">
-    <link rel="stylesheet" href="/assets/css/app/app.css"> 
+    <link rel="stylesheet" href="/assets/css/app/styles.css">
     <link rel="stylesheet" href="/assets/js/app/lib/glightbox/css/glightbox.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="/assets/css/admin/quill.snow.css" rel="stylesheet">   
+    <link href="/assets/css/admin/quill.snow.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;500;600;700;800&display=swap" rel="stylesheet">
     @yield('styles')
 </head>

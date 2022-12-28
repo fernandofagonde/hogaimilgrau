@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Admin\LoginController;
 
 use App\Models\LogAcesso;
+use App\Models\User;
 use App\Models\UsersLogin;
 
 class AuthenticateMiddleware
@@ -44,14 +45,21 @@ class AuthenticateMiddleware
             }
             else {
 
-                return redirect()->route('site.login', [ 'notifyType' => 'logout' ] );
+                // Send Notify
+                session()->flash('notifyType', 'logout');
+
+                return redirect()->route('site.login');
 
             }
 
         }
         else if($request->hasHeader('Auth-Key') && $request->hasHeader('Auth-Token')) {
 
-            $verify = DB::select('SELECT id FROM users WHERE MD5(user_id) = :akey AND token = :atoken LIMIT 1', [ 'akey' => $request->hasHeader('Auth-Key'), 'atoken' => $request->hasHeader('Auth-Token') ])->first();
+            $verify = User::select(['id'])
+            ->whereRaw('MD5(user_id) = :akey AND token = :atoken', [ 'akey' => $request->hasHeader('Auth-Key'), 'atoken' => $request->hasHeader('Auth-Token') ])
+            ->get()
+            ->first();
+            //User::select('SELECT id FROM users WHERE MD5(user_id) = :akey AND token = :atoken LIMIT 1', )->first();
 
             if(isset($verify->id)) {
 
@@ -70,7 +78,10 @@ class AuthenticateMiddleware
         }
         else {
 
-            return redirect()->route('site.login', [ 'notifyType' => 'error-login' ]);
+            // Send Notify
+            session()->flash('notifyType', 'error-login');
+
+            return redirect()->route('site.login');
 
         }
 

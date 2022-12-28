@@ -67,6 +67,9 @@ class LoginController extends Controller
                 // Generate UUID / Token
                 $token = Str::uuid();
 
+                // Remove Previuosly Login Data
+                ClientsLogin::where('client_id', $verify->id)->delete();
+
                 // Create Login Point
                 ClientsLogin::create(['client_id' => $verify->id, 'token' => $token]);
 
@@ -112,8 +115,6 @@ class LoginController extends Controller
 
     /**
      * getId
-     *
-     * @return void
      */
     public static function getId() {
 
@@ -124,8 +125,6 @@ class LoginController extends Controller
 
     /**
      * getName
-     *
-     * @return void
      */
     public static function getName() {
 
@@ -136,13 +135,11 @@ class LoginController extends Controller
 
     /**
      * getImage
-     *
-     * @return void
      */
     public static function getImage() {
 
         $profile = Client::select(['id', 'image'])->where('id', self::getId())->get()->first();
- 
+
         if(isset($profile->id)) {
 
             return ($profile->image != '' && !is_null($profile->image)) ? $profile->image : '';
@@ -159,8 +156,6 @@ class LoginController extends Controller
 
     /**
      * cookieKey
-     *
-     * @return void
      */
     public static function cookieKey() {
 
@@ -171,8 +166,6 @@ class LoginController extends Controller
 
     /**
      * cookieToken
-     *
-     * @return void
      */
     public static function cookieToken() {
 

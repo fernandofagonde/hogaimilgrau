@@ -17,6 +17,7 @@ class CreateClientsTable extends Migration
             $table->id();
             $table->enum('status', ["ACTIVE", "BLOCKED"]);
             $table->string('name', 150);
+            $table->enum('document_type', ["CPF", "CNPJ"]);
             $table->string('document')->unique();
             $table->string('phone', 15);
             $table->enum('phone_whatsapp', ["Y", "N"]);

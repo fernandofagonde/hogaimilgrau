@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\DB;
 
 use App\Http\Controllers\App\LoginController;
 
+use App\Models\Client;
 use App\Models\ClientsLogin;
 
 class AuthenticateMiddleware
@@ -53,7 +54,11 @@ class AuthenticateMiddleware
         }
         else if($request->hasHeader('Auth-Key') && $request->hasHeader('Auth-Token')) {
 
-            $verify = DB::select('SELECT id FROM clients WHERE MD5(client_id) = :akey AND token = :atoken LIMIT 1', [ 'akey' => $request->hasHeader('Auth-Key'), 'atoken' => $request->hasHeader('Auth-Token') ])->first();
+            $verify = $verify = Client::select(['id'])
+            ->whereRaw('MD5(client_id) = :akey AND token = :atoken', [ 'akey' => $request->hasHeader('Auth-Key'), 'atoken' => $request->hasHeader('Auth-Token') ])
+            ->get()
+            ->first();
+            //DB::select('SELECT id FROM clients WHERE MD5(client_id) = :akey AND token = :atoken LIMIT 1', [ 'akey' => $request->hasHeader('Auth-Key'), 'atoken' => $request->hasHeader('Auth-Token') ])->first();
 
             if(isset($verify->id)) {
 

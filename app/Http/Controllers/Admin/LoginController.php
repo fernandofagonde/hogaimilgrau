@@ -135,6 +135,26 @@ class LoginController extends Controller
 
     }
 
+    /**
+     * getImage
+     */
+    public static function getImage() {
+
+        $profile = User::select(['id', 'image'])->where('id', self::getId())->get()->first();
+
+        if(isset($profile->id)) {
+
+            return ($profile->image != '' && !is_null($profile->image)) ? $profile->image : '';
+
+        }
+        else {
+
+            return '';
+
+        }
+
+    }
+
 
     /**
      * getType
@@ -197,8 +217,10 @@ class LoginController extends Controller
 
             }
 
-            // Unset Cookie
+            // Unset Cookies
             setcookie('AuthToken', '', time() - 3600);
+            setcookie(self::cookieKey(), '', time() - 3600);
+            setcookie(self::cookieToken(), '', time() - 3600);
 
             // Delete User Session
             unset($_SESSION[$keyId], $_SESSION[$keyToken], $_SESSION[$keyName]);

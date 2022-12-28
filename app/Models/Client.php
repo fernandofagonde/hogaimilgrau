@@ -15,6 +15,7 @@ class Client extends Model
     protected $fillable = [
         "status",
         "name",
+        "document_type",
         "document",
         "phone",
         "phone_whatsapp",

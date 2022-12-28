@@ -1,6 +1,6 @@
 @extends('admin.templates.basic')
 
-@section('title', 'Painel Administrativo | Index')
+@section('title', 'Admin Hogai | Dashboard')
 
 @section('body')
 
@@ -11,6 +11,9 @@
         @if (session()->has('notifyType'))
             {{ Helpers::loginAlert( session('notifyType') ) }}
         @endif
+
+        @component('admin._components.dashboard', compact(['stats']))
+        @endcomponent
 
     </div>
 

@@ -314,13 +314,13 @@
                 a.link-profile {
 
                     display: inline-flex;
-                    width: 45px;
+                    width: 40px;
 
                     &.profile-image {
 
                         height: 32px;
 
-                        @include vars.brad(1rem);
+                        @include vars.brad(32px);
                         @include vars.bg-img(var(--bg-image));
                         @include vars.bg-size();
                         @include vars.bg-rep();

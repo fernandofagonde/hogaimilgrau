@@ -92,6 +92,7 @@ Route::prefix('app')->middleware('app.auth')->group(function() {
 */
 Route::get('/login', [\App\Http\Controllers\Admin\LoginController::class, 'index'])->name('site.login');
 Route::post('/login', [\App\Http\Controllers\Admin\LoginController::class, 'autenticate'])->name('site.login');
+Route::post('/login-recovery', [\App\Http\Controllers\Admin\UsersController::class, 'recovery'])->name('site.login.recovery');
 
 /*
 |--------------------------------------------------------------------------
