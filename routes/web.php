@@ -111,6 +111,11 @@ Route::prefix('admin')->middleware('admin.auth')->group(function() {
         Route::get('clients/search', [\App\Http\Controllers\App\ReceivableBillsController::class, 'search'])->name('clients.search');
         Route::resource('clients', \App\Http\Controllers\App\ReceivableBillsController::class);
 
+        // Profile
+        Route::get('profile', [\App\Http\Controllers\App\ProfileController::class, 'index'])->name('profile.index');
+        Route::put('profile/update', [\App\Http\Controllers\App\ProfileController::class, 'update'])->name('profile.update');
+        Route::delete('profile/attachment/{profile}', [\App\Http\Controllers\App\ProfileController::class, 'deleteAttachment'])->name('profile.attachment_delete');
+
     });
 
     // Logout

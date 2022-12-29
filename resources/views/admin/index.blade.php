@@ -20,3 +20,7 @@
 </section>
 
 @endsection
+
+@section('styles')
+    <link rel="stylesheet" href="/assets/css/admin/dashboard.css">
+@endsection
