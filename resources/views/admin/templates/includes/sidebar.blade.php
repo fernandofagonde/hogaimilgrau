@@ -8,8 +8,8 @@
 
     <div class="logo">
 
-        <div><a href="/app" title="{{ config('app.name_client') }}"><img src="/assets/images/app/icon.png"></a></div>
-        <span>{{ config('app.name_client') }}</span>
+        <div><a href="/admin" title="{{ config('app.name_admin') }}"><img src="/assets/images/app/icon.png"></a></div>
+        <span>{{ config('app.name_admin') }}</span>
 
     </div>
 
@@ -23,7 +23,7 @@
 
                 if($image != '') {
 
-                    echo ' style="--bg-image: url('. url("content/app/profile") .'/thumb/'. $image .');"';
+                    echo ' style="--bg-image: url('. url("content/admin/profile") .'/thumb/'. $image .');"';
 
                 }
 
@@ -33,7 +33,7 @@
                 {{ $loginController::getName() }}
             </div>
 
-            <a class="link-logout" href="{{ route('app.logout') }}">@php echo Html::icon('icon-log-out') @endphp</a>
+            <a class="link-logout" href="{{ route('admin.logout') }}">@php echo Html::icon('icon-log-out') @endphp</a>
     </div>
 
 </aside>

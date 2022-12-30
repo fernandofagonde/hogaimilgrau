@@ -6,14 +6,10 @@ use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
-
-use App\Http\Controllers\SendEmailController;
-
 use Illuminate\Support\Facades\Mail;
 
-use App\Mail\NotifyMail;
+use App\Mail\NotifyApp;
 
 use App\Models\Client;
 
@@ -81,7 +77,7 @@ class ClientsController extends Controller
             ];
 
             // Send E-mail
-            Mail::to(['address' => $client->email])->send(new NotifyMail($mailData));
+            Mail::to(['address' => $client->email])->send(new NotifyApp($mailData));
 
             if (Mail::failures()) {
 

@@ -105,16 +105,16 @@ Route::prefix('admin')->middleware('admin.auth')->group(function() {
     Route::name('admin.')->group(function() {
 
         // Clients
-        Route::delete('clients/attachment/{client}', [\App\Http\Controllers\App\ReceivableBillsController::class, 'deleteAttachment'])->name('clients.attachment_delete');
-        Route::put('clients/status', [\App\Http\Controllers\App\ReceivableBillsController::class, 'status'])->name('clients.status');
-        Route::post('clients/search', [\App\Http\Controllers\App\ReceivableBillsController::class, 'search'])->name('clients.search');
-        Route::get('clients/search', [\App\Http\Controllers\App\ReceivableBillsController::class, 'search'])->name('clients.search');
-        Route::resource('clients', \App\Http\Controllers\App\ReceivableBillsController::class);
+        Route::delete('clients/attachment/{client}', [\App\Http\Controllers\Admin\ClientsController::class, 'deleteAttachment'])->name('clients.attachment_delete');
+        Route::put('clients/status', [\App\Http\Controllers\Admin\ClientsController::class, 'status'])->name('clients.status');
+        Route::post('clients/search', [\App\Http\Controllers\Admin\ClientsController::class, 'search'])->name('clients.search');
+        Route::get('clients/search', [\App\Http\Controllers\Admin\ClientsController::class, 'search'])->name('clients.search');
+        Route::resource('clients', \App\Http\Controllers\Admin\ClientsController::class);
 
         // Profile
-        Route::get('profile', [\App\Http\Controllers\App\ProfileController::class, 'index'])->name('profile.index');
-        Route::put('profile/update', [\App\Http\Controllers\App\ProfileController::class, 'update'])->name('profile.update');
-        Route::delete('profile/attachment/{profile}', [\App\Http\Controllers\App\ProfileController::class, 'deleteAttachment'])->name('profile.attachment_delete');
+        Route::get('profile', [\App\Http\Controllers\Admin\ProfileController::class, 'index'])->name('profile.index');
+        Route::put('profile/update', [\App\Http\Controllers\Admin\ProfileController::class, 'update'])->name('profile.update');
+        Route::delete('profile/attachment/{profile}', [\App\Http\Controllers\Admin\ProfileController::class, 'deleteAttachment'])->name('profile.attachment_delete');
 
     });
 

@@ -66,6 +66,10 @@ class LoginController extends Controller
 
                 session_start();
 
+                // Update Last Login
+                $verify->last_login = date("Y-m-d H:i:s");
+                $verify->save();
+
                 // Generate UUID / Token
                 $token = Str::uuid();
 

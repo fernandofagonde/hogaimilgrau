@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\App;
+namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -10,12 +10,10 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use Intervention\Image\ImageManager;
 
-use App\Http\Controllers\App\LoginController;
-use App\Http\Controllers\App\ClientsLogController;
-use App\Models\ClientsImage as Image;
+use App\Http\Controllers\Admin\LoginController;
+use App\Http\Controllers\Admin\UsersLogController;
 
-use App\Models\Profile;
-use App\Models\Client;
+use App\Models\User;
 
 class ProfileController extends Controller
 {
@@ -24,8 +22,8 @@ class ProfileController extends Controller
      * Common Vars
      */
 
-    var $routePath = 'app.profile.';
-    var $viewPath = 'app.profile.';
+    var $routePath = 'admin.profile.';
+    var $viewPath = 'admin.profile.';
 
     /**
      * Validator Rules
@@ -33,9 +31,6 @@ class ProfileController extends Controller
 
     var $rules = [
         'name' => 'required|min:5|max:190',
-        'phone' => 'required|min:14|max:15',
-        'city' => 'required|min:3|max:190',
-        'uf' => 'required',
         'email' => 'required|email|unique:clients',
         'password' => 'required|min:6|max:12',
     ];
@@ -45,12 +40,10 @@ class ProfileController extends Controller
     */
 
     var $feedback = [
-        'type.required' => "O campo Tipo é obrigatório.",
         'name.required' => "O campo Nome é obrigatório.",
-        'phone.required' => "O campo Telefone é obrigatório.",
-        'phone.min' => "Telefone inválido, verifique-o.",
-        'city.required' => "O campo Cidade é obrigatório.",
-        'uf.required' => "O campo Estado é obrigatório.",
+        'email.required' => "O campo E-mail é obrigatório.",
+        'email.email' => "O e-mail informado é inválido.",
+        'email.unique' => "O e-mail informado já está em uso.",
         'password.required' => "O campo Password Atual é obrigatório.",
         'password.min' => "O campo Password Atual deve conter entre 6 e 12 caracteres.",
         'password.max' => "O campo Password Atual deve conter entre 6 e 12 caracteres.",
@@ -69,12 +62,12 @@ class ProfileController extends Controller
      */
     public function index()
     {
-        $profile = DB::table('clients')
-            ->select(['id', 'name', 'document_type', 'document', 'city', 'uf', 'phone', 'phone_whatsapp', 'image', 'email'])
+        $profile = DB::table('users')
+            ->select(['id', 'name', 'image', 'email'])
             ->where('id', LoginController::getId())
             ->get()->first();
 
-        return view('app.profile.index', [ 'profile' => $profile ]);
+        return view('admin.profile.index', [ 'profile' => $profile ]);
     }
 
     /**
@@ -87,11 +80,11 @@ class ProfileController extends Controller
     public function update(Request $request)
     {
         // Client ID
-        $clientId = LoginController::getId();
+        $userId = LoginController::getId();
 
         // Update Validation Rules
         $rules = $this->rules;
-        $rules['email'] .= ',email,'. $clientId;
+        $rules['email'] .= ',email,'. $userId;
 
         if(strlen($request->input('new_password')) > 0) {
 
@@ -103,17 +96,12 @@ class ProfileController extends Controller
         // Execute Validation
         Validator::make($request->all(), $rules, $this->feedback)->validate();
 
-        $profile = Client::where('id', $clientId)->get()->first();
+        $profile = User::where('id', $userId)->get()->first();
 
         if(Hash::check($request->input('password'), $profile->password)) {
 
             $profile->name = $request->input('name');
             $profile->email = $request->input('email');
-            $profile->phone = $request->input('phone');
-            $profile->phone_whatsapp = $request->input('phone_whatsapp');
-            $profile->city = $request->input('city');
-            $profile->uf = $request->input('uf');
-            $profile->updated_at = date('Y-m-d H:i:s');
 
             if(strlen($request->input('new_password')) >= 6 &&  strlen($request->input('new_password')) <= 12 && $request->input('new_password') === $request->input('retype_new_password')) {
 
@@ -127,7 +115,7 @@ class ProfileController extends Controller
 
                 $file = $request->file('image');
 
-                $path = public_path("content/app/profile");
+                $path = public_path("content/admin/profile");
 
                 $fileExtension = $file->getClientOriginalExtension();
 
@@ -192,17 +180,18 @@ class ProfileController extends Controller
             session()->flash('notifyType', 'success-edit');
 
             // Log Action
-            ClientsLogController::create('Alterou Profile');
+            UsersLogController::create('Alterou Profile');
+
+            // Return Redirect
+            return redirect()->route($this->routePath . 'index');
 
         }
         else {
 
-            // Send Notify
-            session()->flash('notifyType', 'profile-password');
+            // Return Redirect
+            return redirect()->route($this->routePath . 'index')->withErrors(['password' => 'O password atual está incorreto.']);
 
         }
-        // Return Redirect
-        return redirect()->route($this->routePath . 'index');
     }
 
     /**
@@ -211,7 +200,7 @@ class ProfileController extends Controller
      * @param  \App\Models\Profile  $profile
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Profile $profile)
+    public function destroy()
     {
         //
     }
@@ -224,9 +213,9 @@ class ProfileController extends Controller
      * @param  mixed $profile
      * @return void
      */
-    public function deleteAttachment(Request $request, $client) {
+    public function deleteAttachment(Request $request, $discard) {
 
-        $profile = Client::select(['id', 'image'])
+        $profile = User::select(['id', 'image'])
             ->where('id', LoginController::getId())
             ->get()->first();
 
@@ -237,8 +226,8 @@ class ProfileController extends Controller
 
                 if($profile->image != '' && !is_null($profile->image)) {
 
-                    @unlink(public_path("content/app/profile") .'/thumb/'. $profile->image);
-                    @unlink(public_path("content/app/profile") .'/large/'. $profile->image);
+                    @unlink(public_path("content/admin/profile") .'/thumb/'. $profile->image);
+                    @unlink(public_path("content/admin/profile") .'/large/'. $profile->image);
 
                 }
 

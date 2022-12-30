@@ -55,14 +55,20 @@ class LoginController extends Controller
         $email = $request->input('email');
         $password = $request->input('password');
 
+        $client = new Client();
+
         // Verify if User Exists
-        $verify = DB::table('clients')->where('email', $email)->get()->first();
+        $verify = $client->where('email', $email)->get()->first();
 
         if(isset($verify->id)) {
 
             if(Hash::check($password, $verify->password)) {
 
                 session_start();
+
+                // Update Last Login
+                $verify->last_login = date("Y-m-d H:i:s");
+                $verify->save();
 
                 // Generate UUID / Token
                 $token = Str::uuid();

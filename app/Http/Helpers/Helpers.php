@@ -141,8 +141,6 @@ class Helpers
 
     /**
      * adminSidebarLinks
-     *
-     * @return void
      */
     private static function adminSidebarLinks () {
 
@@ -204,6 +202,13 @@ class Helpers
                 'url' => ''
             ],
 
+            // Profile
+            [
+                'icon' => 'icon-user',
+                'label' => 'Minha Conta',
+                'url' => 'profile'
+            ],
+
             // Settings
             [
                 'icon' => 'icon-settings',
@@ -213,7 +218,7 @@ class Helpers
                     [
                         'icon' => 'icon-users',
                         'label' => 'Usuários',
-                        'url' => 'settings-users'
+                        'url' => 'users'
                     ],
 
                     [
@@ -312,55 +317,40 @@ class Helpers
 
             ],
 
-            // Work
+            // Clients
             [
                 'icon' => 'icon-briefcase',
-                'label' => 'Jobs',
-                'links' => [
-
-                    [
-                        'icon' => 'icon-filter',
-                        'label' => 'Serviços',
-                        'url' => 'jobs-services'
-                    ],
-
-                    [
-                        'icon' => 'icon-file-text',
-                        'label' => 'Jobs',
-                        'url' => 'jobs'
-                    ],
-
-                ]
-
+                'label' => 'Clientes',
+                'url' => 'clients'
             ],
 
             // Marketing
-            [
-                'icon' => 'icon-bullhorn',
-                'label' => 'Marketing',
-                'links' => [
+            // [
+            //     'icon' => 'icon-bullhorn',
+            //     'label' => 'Marketing',
+            //     'links' => [
 
-                    [
-                        'icon' => 'icon-slides',
-                        'label' => 'Banners Slides',
-                        'url' => 'marketing-slides'
-                    ],
+            //         [
+            //             'icon' => 'icon-slides',
+            //             'label' => 'Banners Slides',
+            //             'url' => 'marketing-slides'
+            //         ],
 
-                    [
-                        'icon' => 'icon-file-text',
-                        'label' => 'Campanhas Push',
-                        'url' => 'marketing-push'
-                    ],
+            //         [
+            //             'icon' => 'icon-file-text',
+            //             'label' => 'Campanhas Push',
+            //             'url' => 'marketing-push'
+            //         ],
 
-                    [
-                        'icon' => 'icon-file-text',
-                        'label' => 'Landing Pages',
-                        'url' => 'marketing-landing-pages'
-                    ],
+            //         [
+            //             'icon' => 'icon-file-text',
+            //             'label' => 'Landing Pages',
+            //             'url' => 'marketing-landing-pages'
+            //         ],
 
-                ]
+            //     ]
 
-            ],
+            // ],
 
             // Newsletter
             [
@@ -399,8 +389,6 @@ class Helpers
 
     /**
      * adminSidebarLinks
-     *
-     * @return void
      */
     private static function appSidebarLinks () {
 
