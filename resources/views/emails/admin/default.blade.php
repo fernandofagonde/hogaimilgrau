@@ -58,32 +58,24 @@
     }
 
     #message-body #info-box {
-        display:inline-block;
+        display:block;
         padding: 1rem 2rem;
         border-radius: 1rem;
         background-color:#eee;
         font-size:16px;
-        font-weight: 700;
-        color: #fff;
+        color: #073B4C;
         margin: 1.5rem 0;
+        text-align: left;
     }
 
-    #message-body #info-box ul {
-        width: 100%;
-        display: flex;
-        flex-direction: column;
+    #message-body #info-box strong {
+        display: inline-block;
+        width: 120px;
+        color: #06d6a0;
+        border-right: 1px solid #fff;
     }
 
-    #message-body #info-box ul li {
-        flex: 1;
-        display: grid;
-        grid-template-columns: 100px auto;
-        gap: 1rem;
-    }
-
-    #message-body #info-box ul li strong {
-        border-right: 1px solid #eee;
-        padding-right: 1rem;
+    #message-body #info-box a {
         color: #06d6a0;
     }
 

@@ -751,7 +751,13 @@
 
     }
 
-    /* SELL STATUS COLORS */
+    /* BOOTSTRAP PATTERN */
+    .status-success { color: var(--color-white); background-color: var(--color-success); }
+    .status-danger { color: var(--color-white); background-color: var(--color-danger); }
+    .status-info { color: var(--color-white); background-color: var(--color-info); }
+    .status-warning { color: var(--color-white); background-color: var(--color-warning); }
+
+    /* PAYMENT STATUS COLORS */
     .status-pending { color: var(--color-white); background-color: var(--color-pending); }
     .status-approved { color: var(--color-white); background-color: var(--color-approved); }
     .status-authorized { color: var(--color-white); background-color: var(--color-authorized); }
@@ -762,37 +768,25 @@
     .status-refunded { color: var(--color-white); background-color: var(--color-refunded); }
     .status-charged-back { color: var(--color-white); background-color: var(--color-charged-back); }
 
-    /* CLIENT STATUS COLORS */
+    /* STATUS COLORS */
     .status-new { background-color: #0ec27d; color: var(--color-white); }
     .status-active { background-color: var(--color-approved); color: var(--color-white); }
+    .status-blocked { background-color: var(--color-black); color: var(--color-white); }
     .status-disabled { background-color: #f63939; color: var(--color-white); }
 
-    .color-novo { color: #0ec27d; }
-    .color-pendente { color: #f63939; }
-    .color-andamento { color: #a3a1a1; }
-    .color-concluido { color: #205d9d; }
-    .color-etapas-concluidas { color: #21a724; }
-    .color-atrasado { color: #e98503; }
+    .color-new { color: #0ec27d; }
+    .color-pending { color: #818181; }
+    .color-in-proccess { color: #0276a3; }
+    .color-concluded { color: #205d9d; }
+    .color-delayed { color: #e98503; }
     .color-cancelado { color: #f63939; }
 
-    .color-solicitada { color: #f63939; }
-    .color-pre-reserva { color: #e98503; }
-    .color-reservada { color: #21a724; }
-    .color-concluida { color: #205d9d; }
-
-    .bg-novo { color: #0ec27d; background-color: #b3fadf; }
-    .bg-pendente { color: #f63939; background-color: #fbadad; }
-    .bg-andamento { color: #807d7d; background-color: #d9d3d3; }
-    .bg-concluido { color: #205d9d; background-color: #9dbde0; }
-    .bg-etapas-concluidas { color: #21a724; background-color: #9dd99e; }
-    .bg-atrasado { color: #e98503; background-color: #fbe0b7; }
-    .bg-cancelado { color: #f63939; background-color: #b7ebfb; }
-
-    .bg-solicitada { color: #f63939; background-color: #fbadad; }
-    .bg-pre-reserva { color: #e98503; background-color: #fbe0b7; }
-    .bg-reservada { color: #21a724; background-color: #9dd99e; }
-    .bg-concluida { color: #205d9d; background-color: #9dbde0; }
-
+    .bg-new { color: #0ec27d; background-color: #b3fadf; }
+    .bg-pending { color: #818181; background-color: #eee; }
+    .bg-in-progress { color: #0276a3; background-color: #a2e0f8; }
+    .bg-concluded { color: #205d9d; background-color: #b8daff; }
+    .bg-delayed { color: #e98503; background-color: #fbe0b7; }
+    .bg-cancelled { color: #f63939; background-color: #b7ebfb; }
 
     /* PAGINATION */
     .pagination-list {

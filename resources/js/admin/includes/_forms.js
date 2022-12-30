@@ -693,7 +693,7 @@
 
         Loader('Buscando registro, aguarde')
 
-        window.location = '/admin/'+ elem.target.dataset.module +'/edit/'+ elem.target.dataset.id
+        window.location = '/admin/'+ elem.target.dataset.module +'/'+ elem.target.dataset.id +'/edit'
 
     })
 
@@ -701,39 +701,48 @@
     // List Del Button
     __on('#module-list', 'click', '.button-list-del', function(elem) {
 
-        modalConfirm('danger', ADMIN_NAME, 'icon-check-circle', 'Apagar Registro', 'Deseja realmente apagar este item? Não é possível reverter sua ação!', 'actionDel('+ elem.target.dataset.id +');', true, '', 'Apagar');
+        modalConfirm('danger', ADMIN_NAME, 'icon-check-circle', 'Apagar Registro', 'Deseja realmente apagar este item? Não é possível reverter sua ação!', 'actionDel(\''+ elem.target.id +'\');', true, '', 'Apagar');
 
     })
 
+    function actionDel (buttonId) {
 
-    function actionDel (id) {
+        let button = __select('#'+ buttonId)
 
-        let module = __getById('Form_MOD').value
+        let form = __select('#delete-form')
 
-        var jsonData = {
-            'id': encode(id)
-        }
+        form.action = '/admin/'+ button.dataset.module +'/'+ button.dataset.id
 
-        modalCloseFast()
+        form.submit()
+
+    }
+
+    // Delete Attachment Confirm
+    __on('body', 'click', '.button-delete-attachment', (elem) => {
+
+        var button = elem.target
+        var module = button.dataset.module
+        var field = button.dataset.field
+        var id = button.dataset.id
+
+        modalConfirm('danger', ADMIN_NAME, 'icon-check-circle', 'Apagar Arquivo', 'Deseja realmente apagar este arquivo? Não é possível reverter sua ação!', 'actionDelAttachment(\''+ module +'\',\''+ id +'\',\''+ field +'\');', true, '', 'Apagar');
+
+
+
+    })
+
+    // Action Attachment Del
+    function actionDelAttachment(module, id, field) {
+
+        modalClose();
+
+        var form = __select('form#delete-form')
+        form.action = '/app/'+ module +'/attachment/'+ id
+        form.querySelector('#field').value = field;
+
         Loader()
 
-        callAPI('DELETE', [module], jsonData).then((RESPONSE) => {
-
-            if(RESPONSE.result == 'success') {
-
-                notify('danger', 'Registro apagado com sucesso!')
-                notify('info', 'Aguarde um instante...')
-
-                delayLocation('/admin/'+ module, 2500)
-
-            }
-            else {
-
-                modalAlert('danger', ADMIN_NAME, 'Ocorreram erros!', RESPONSE['message'])
-
-            }
-
-        })
+        form.submit()
 
     }
 
@@ -770,6 +779,9 @@
 	};
 
 
+
+
+
     // Button Back Form
     __on('#form-buttons', 'click', '#btn-form-back', function(elem) {
 
@@ -783,19 +795,13 @@
 
     }
 
-    function changeNavAction (action) {
-
-        __select('nav.navbar div span').innerHTML = action
-
-    }
-
 
     // Button Save Form
     __on('#form-buttons', 'click', '#btn-form-save', function(elem) {
 
         elem.preventDefault()
 
-        modalConfirm('success', ADMIN_NAME, 'icon-check-circle', 'Gravar registro', 'Deseja realmente gravar o registro com os dados informados?', 'actionSave(0);', true, '', 'Gravar');
+        modalConfirm('success', ADMIN_NAME, 'icon-check-circle', 'Gravar registro', 'Deseja realmente gravar o registro com os dados informados?', 'actionSave(\'no\');', true, '', 'Gravar');
 
     })
 
@@ -803,7 +809,7 @@
 
         elem.preventDefault()
 
-        modalConfirm('success', ADMIN_NAME, 'icon-check-circle', 'Gravar registro', 'Deseja realmente gravar o registro com os dados informados?', 'actionSave(1);', true, '', 'Gravar');
+        modalConfirm('success', ADMIN_NAME, 'icon-check-circle', 'Gravar registro', 'Deseja realmente gravar o registro com os dados informados e seguir editando?', 'actionSave(\'edit\');', true, '', 'Gravar');
 
     })
 
@@ -811,17 +817,17 @@
 
         elem.preventDefault()
 
-        modalConfirm('success', ADMIN_NAME, 'icon-check-circle', 'Gravar Conteúdo', 'Deseja realmente gravar os dados informados?', 'actionSave(2);', true, '', 'Gravar');
+        modalConfirm('success', ADMIN_NAME, 'icon-check-circle', 'Gravar registro', 'Deseja realmente gravar os dados informados e incluir um novo?', 'actionSave(\'create\');', true, '', 'Gravar');
 
     })
 
-    function actionSave (returnMethod) {
+    function actionSave (_return) {
 
-        modalClose()
+        modalClose();
 
-        Loader('Salvando registro, aguarde...')
+        __select('#_return').value = _return;
 
-        __before('<input type="hidden" id="return_method" value="'+ returnMethod +'">', __select('#module-form'))
+        Loader()
 
         __select('#module-form').submit()
 
@@ -849,42 +855,26 @@
 
     })
 
-
     // Delete Button Form
     __on('#form-buttons', 'click', '#btn-form-del', function(elem) {
 
-        modalConfirm('danger', ADMIN_NAME, 'icon-check-circle', 'Apagar Registro', 'Deseja realmente apagar este item? Não é possível reverter sua ação!', 'actionDelForm();', true, '', 'Apagar');
+        modalConfirm('danger', ADMIN_NAME, 'icon-check-circle', 'Apagar Registro', 'Deseja realmente apagar este item? Não é possível reverter sua ação!', 'actionDelForm(\''+ elem.target.id +'\');', true, '', 'Apagar');
 
     })
 
-    function actionDelForm (id) {
+    function actionDelForm (buttonId) {
 
-        let module = __getById('Form_MOD').value
+        modalClose()
 
-        var jsonData = {
-            'id': encode(__getById('Form_ID').value)
-        }
+        let button = __select('#'+ buttonId)
 
-        modalCloseFast()
+        let form = __select('#delete-form')
+
+        form.action = '/app/'+ button.dataset.module +'/'+ button.dataset.id
+
         Loader()
 
-        callAPI('DELETE', [module], jsonData).then((RESPONSE) => {
-
-            if(RESPONSE.result == 'success') {
-
-                notify('danger', 'Registro apagado com sucesso!')
-                notify('info', 'Aguarde um instante...')
-
-                delayLocation('/admin/'+ module, 2500)
-
-            }
-            else {
-
-                modalAlert('danger', ADMIN_NAME, 'Ocorreram erros!', RESPONSE['message'])
-
-            }
-
-        })
+        form.submit()
 
     }
 
@@ -897,7 +887,6 @@
         });
 
     })
-
 
     // Switch Items
     __selectAll('.switch-toggle').forEach((elem) => {

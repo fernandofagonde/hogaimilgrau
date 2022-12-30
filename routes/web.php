@@ -1,10 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Helpers;
-use App\Http\Middleware\CountVisitMiddleware;
-use App\Http\Controllers\NotifyController;
-use App\Http\Controllers\SendEmailController;
 
 /*
 |--------------------------------------------------------------------------

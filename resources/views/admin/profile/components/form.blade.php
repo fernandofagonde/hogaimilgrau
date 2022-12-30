@@ -65,7 +65,7 @@
         echo Html::divider();
 
         /*
-        * Billet Uploader
+        * Profile Image Uploader
         */
 
         echo Html::uploadField([

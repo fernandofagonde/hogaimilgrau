@@ -3,8 +3,9 @@
 
     <li class="list-header">
         <div class="w-10 align-center">#</div>
-        <div class="w-30">Nome</div>
-        <div class="w-30 align-center">E-mail</div>
+        <div class="w-25">Nome</div>
+        <div class="w-20 align-center">E-mail</div>
+        <div class="w-15 align-center">Status</div>
         <div class="w-15 align-center">Últ. Login</div>
         <div class="w-15 align-center">Opções</div>
     </li>
@@ -13,8 +14,19 @@
 
         <li class="list-item">
             <div data-label="#" class="w-10 align-center">{{ $item->id }}</div>
-            <div data-label="Nome" class="w-30">{{ $item->name }}</div>
-            <div data-label="E-mail" class="w-30 align-center">{{ $item->email }}</div>
+            <div data-label="Nome" class="w-25">{{ $item->name }}</div>
+            <div data-label="E-mail" class="w-20 align-center">{{ $item->email }}</div>
+            <div data-label="Status" class="w-15 align-center">@switch($item->status)
+
+                @case('ACTIVE')
+                    <div class="status-badge status-active">ATIVO</div>
+                    @break
+
+                @case('BLOCKED')
+                    <div class="status-badge status-blocked">BLOQUEADO</div>
+                    @break
+
+            @endswitch</div>
             <div data-label="Últ. Login" class="w-15 align-center">{{ Main::datetime($item->last_login, 'string') }}</div>
             <div data-label="Opções" class="w-15 list-buttons">
                 <button type="button" class="button button-info button-list-edit" data-module="{{ $module }}" data-id="{{ $item->id }}"><i class="icon-edit"></i><span>Editar</span></button>

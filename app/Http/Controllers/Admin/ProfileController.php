@@ -79,7 +79,7 @@ class ProfileController extends Controller
      */
     public function update(Request $request)
     {
-        // Client ID
+        // User ID
         $userId = LoginController::getId();
 
         // Update Validation Rules
@@ -134,7 +134,6 @@ class ProfileController extends Controller
                     $tempfile = public_path('content/temp') .'/'. $file->getClientOriginalName();
 
                     $profile->image = $fileName;
-                    $profile->save();
 
                     // Initiate Manager
                     $manager = new ImageManager('gd');

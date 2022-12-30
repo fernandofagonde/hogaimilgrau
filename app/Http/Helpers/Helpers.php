@@ -73,7 +73,7 @@ class Helpers
      * @return void
      */
 
-    public static function formAlert( $notifyType, $route = '' ) {
+    public static function formAlert( $notifyType, $route = '', $customData = '' ) {
 
         switch($notifyType) {
 
@@ -115,6 +115,21 @@ class Helpers
             case 'profile-password':
                 $notifyType = 'danger';
                 $notifyMessage = Html::icon('icon-times') . ' Password atual incorreto, tente novamente!';
+                break;
+
+            case 'notify-mail-error':
+                $notifyType = 'danger';
+                $notifyMessage = Html::icon('icon-times') . ' Não foi possível notificar o cliente por e-mail!';
+                break;
+
+            case 'notify-mail-success':
+                $notifyType = 'success';
+                $notifyMessage = Html::icon('icon-times') . ' Cliente notificado por e-mail com sucesso!';
+                break;
+
+            case 'custom':
+                $notifyType = ($customData[0] ?? 'danger') . ' block-alert';
+                $notifyMessage = (($customData[1] != '') ? Html::icon($customData[1]) : '') . ' ' . $customData[2];
                 break;
 
         }
