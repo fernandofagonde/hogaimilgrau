@@ -24,7 +24,7 @@ class AdminController extends Controller
 
         if(!isset($stats->totalClients)) {
 
-            $stats = [
+            $stats =(object) [
                 'totalClients' => 0,
                 'activeClients' => 0,
                 'loggedClients' => 0
