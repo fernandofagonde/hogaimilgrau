@@ -1,1 +1,116 @@
-.status-faithful{background-color:#3cb371;color:var(--color-white)}.status-provider{background-color:#483d8b;color:var(--color-white)}.status-open{background-color:var(--color-info);color:var(--color-white)}.status-delayed{background-color:var(--color-warning);color:var(--color-white)}.status-paid{background-color:var(--color-success);color:var(--color-white)}.status-canceled{background-color:var(--color-danger);color:var(--color-white)}#dashboard{padding-top:1rem;padding-bottom:5rem;display:flex;align-items:stretch;justify-content:space-between;flex-wrap:wrap;gap:3rem}#dashboard .card{flex:1;flex-basis:100%}#dashboard .card .card-title>div{font-size:2rem;font-weight:bold;color:var(--color-primary);margin-bottom:1.5rem;display:flex;align-items:center;gap:.75rem}#dashboard .card .card-title>div i{font-size:2.4rem;color:var(--color-primary);margin-top:-0.4rem}#dashboard .card.card-payable{background-color:var(--color-alternative)}#dashboard .card.card-payable *{color:var(--color-text) !important}#dashboard .card.card-receivable{background-color:var(--color-secondary)}#dashboard .card.card-receivable *{color:var(--color-text) !important}#dashboard .card.card-provided{background-color:var(--color-primary)}#dashboard .card.card-provided *{color:var(--color-text) !important}#dashboard .stats-grid{display:grid;width:100%;grid-template-columns:1fr 1fr 1fr;gap:2rem}#dashboard .stats-grid .card{display:flex;align-items:center;justify-content:space-between}#dashboard .stats-grid .card strong{flex:1;display:inline-flex;align-items:center;gap:1rem;font-size:1.8rem;font-weight:600;color:var(--color-primary)}#dashboard .stats-grid .card strong i{font-size:2.2rem}#dashboard .stats-grid .card span{font-size:2rem;font-weight:600}
+.status-faithful {
+    background-color: #3cb371;
+    color: var(--color-white)
+}
+
+.status-provider {
+    background-color: #483d8b;
+    color: var(--color-white)
+}
+
+.status-open {
+    background-color: var(--color-info);
+    color: var(--color-white)
+}
+
+.status-delayed {
+    background-color: var(--color-warning);
+    color: var(--color-white)
+}
+
+.status-paid {
+    background-color: var(--color-success);
+    color: var(--color-white)
+}
+
+.status-canceled {
+    background-color: var(--color-danger);
+    color: var(--color-white)
+}
+
+#dashboard {
+    padding-top: 1rem;
+    padding-bottom: 5rem;
+    display: flex;
+    align-items: stretch;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 3rem
+}
+
+#dashboard .card {
+    flex: 1;
+    flex-basis: 100%
+}
+
+#dashboard .card .card-title>div {
+    font-size: 2rem;
+    font-weight: bold;
+    color: var(--color-primary);
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: .75rem
+}
+
+#dashboard .card .card-title>div i {
+    font-size: 2.4rem;
+    color: var(--color-primary);
+    margin-top: -0.4rem
+}
+
+#dashboard .card.card-payable {
+    background-color: var(--color-alternative)
+}
+
+#dashboard .card.card-payable * {
+    color: var(--color-text) !important
+}
+
+#dashboard .card.card-receivable {
+    background-color: var(--color-secondary)
+}
+
+#dashboard .card.card-receivable * {
+    color: var(--color-text) !important
+}
+
+#dashboard .card.card-provided {
+    background-color: var(--color-primary)
+}
+
+#dashboard .card.card-provided * {
+    color: var(--color-text) !important
+}
+
+#dashboard .stats-grid {
+    display: grid;
+    width: 100%;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 2rem
+}
+
+#dashboard .stats-grid .card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between
+}
+
+#dashboard .stats-grid .card strong {
+    flex: 1;
+    display: inline-flex;
+    align-items: center;
+    gap: 1rem;
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: var(--color-primary)
+}
+
+#dashboard .stats-grid .card strong i {
+    font-size: 2.2rem
+}
+
+#dashboard .stats-grid .card span {
+    font-size: 2rem;
+    font-weight: 600
+}
