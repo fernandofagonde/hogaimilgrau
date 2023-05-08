@@ -8,7 +8,7 @@
         </div>
 
         <div id="footer-dev">
-            <a href="https://www.gustavodaluz.com.br" target="_blank" title="Desenvolvido por GDL Design e Programação">GDL Design e Programação</a>
+            <a href="https://www.ipsillon.cc" target="_blank" title="Desenvolvido por Ípsillon">Ípsillon</a>
         </div>
 
     </div>
